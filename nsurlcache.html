@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="vTaWd72F_kJY6mNbfoCQuutuGdH1kSsg7o3F31b3wgg" />
+  <meta name="baidu-site-verification" content="6rfk66K9Nk" />
+    
+  <title>说说 NSURLCache 中的那些坑</title>
+  
+  <meta name="author" content="adow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/_themes/simple/vendor/normalize.css">
+  <script src = "/_themes/simple/vendor/jquery.min.js"></script>
+  <link rel="stylesheet" href="/_themes/simple/layout.css">
+  <link rel="alternate" type="application/rss+xml" title="CodingNEXT" href="http://codingnext.com/atom.xml">
+   <style type="text/css">
+    
+  </style>  
+</head>
+<body>
+  <div id="layout-container">
+    <div id = 'site-nav'>
+      <div class = 'site-name'><span class = 'site-name-desktop'><a href = 'index.html'>CodingNEXT</a></span></div>
+      <ul class = 'site-links'>
+        
+        <li><a href = 'archive.html'>存档</a></li>
+        
+        <li><a href = 'about.html'>关于</a></li>
+        
+      </ul>
+      <div class = 'site-menu'>
+        <a href='#'><img src= '/_themes/simple/images/menu-gray.png'/></a> 
+      </div>
+      
+    </div>
+    <div id = 'site-links-mobile'>
+      <a class = 'site-links-mobile-close' href = '#'>close</a>
+      <div class="clearfix"></div>
+      <ul>
+        
+        <li><a href = 'archive.html'>存档</a></li>
+        
+        <li><a href = 'about.html'>关于</a></li>
+        
+      </ul>
+    </div>
+    <div class ='clearfix'></div>
+    <div id ='article-header'>
+      <div id = 'article-header-container'>
+        
+        <img src = 'http://7vihfk.com1.z0.glb.clouddn.com/thumb_IMG_3558_800.jpg' class='head-photo post-image'/>
+         
+        <h1 class = 'post-title'>
+          说说 NSURLCache 中的那些坑
+        </h1>
+        
+        <p class = 'publish-date post-meta'>adow 发布于 2016-05-15, code</p>
+      </div>
+    </div> 
+    <div id="article-content">
+      <div id="article-content-body" class = 'post'>
+        <p>我估计有很多人都会跟我一样在 iOS App 中自己去实现一个缓存 (Cache), 最常见的地方是一些图片下载和在线的配置参数。即使去看看现在主流的图片下载工具，比如 SDWebImage, 或者 Kingfisher, 他们也都自己建了一套缓存。</p>
+
+<p>为什么我们去建一套自己的缓存而不是使用系统内置的呢？</p>
+
+<p>我估计很多人都跟我想的一样，因为觉得实现缓存是一种非常简单的事情，如果要重新造一个轮子的话，这是一个非常易于上手的项目，然后我们就开始实现各种 XXXCache 了。</p>
+
+<p>对我而言，虽然我很早就开始写 iOS App，但是却一直不知道有 NSURLCache/NSCache 这样的存在，然后又因为觉得这个非常简单啊，所以在我的很多 App 中，都有不同方式实现的 Cache。直到前两年我看到了这篇文章，<a href="http://nshipster.cn/nsurlcache/" title="">NSURLCache</a>，我才焕然大悟，原来我白折腾了这么多年。</p>
+
+<p>事实上，只要两行代码就可以配置完 App 中所有请求的缓存，剩下的只要依靠 <code>http</code> 响应头中 <code>Cache-Control</code> 的设置就可以完成自动的缓存和管理了。</p>
+
+<pre><code>- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+                                                       diskCapacity:20 * 1024 * 1024
+                                                           diskPath:nil];
+  [NSURLCache setSharedURLCache:URLCache];
+}</code></pre>
+
+<p>由于, NSURLCache 可以同时缓存在内存和磁盘上，而且他还会根据 <code>Cache-Control</code> 以及系统资源的压力而自动管理，我现在将本地所有的缓存都替换了。</p>
+
+<p>但是在使用的过程中，我却发现了几个坑要注意:</p>
+
+<ul>
+<li><p>如果一个请求的响应内容的大小超过了 NSURLCache 中对应磁盘大小的 5%, 他就不会被缓存；我之前一直没有找到这条规则，但是我有一个图片的请求永远都没法缓存下来（我设置的 NSURLCache 中磁盘大小是 10MB, 但是这个图片有 3.8 MB）, 直到我在 <code>optional func URLSession(_ session: NSURLSession, dataTask dataTask: NSURLSessionDataTask, willCacheResponse proposedResponse: NSCachedURLResponse, completionHandler completionHandler: (NSCachedURLResponse?) -> Void)</code> 中看到了说明</p>
+
+<blockquote>
+<p>The response size is small enough to reasonably fit within the cache. (For example, if you provide a disk cache, the response must be no larger than about 5% of the disk cache size.)</p>
+</blockquote></li>
+<li><p>如果这个请求的响应头中有 <code>Transfer-Encoding: Chunked</code>, 那他也不会缓存；</p></li>
+</ul>
+
+<p>事实上，在<code>optional func URLSession(_ session: NSURLSession, dataTask dataTask: NSURLSessionDataTask, willCacheResponse proposedResponse: NSCachedURLResponse, completionHandler completionHandler: (NSCachedURLResponse?) -> Void)</code> 中对于缓存的条件还有一些限制，比如 <code>NSURLSessionConfiguration</code> 中没有禁止缓存，<code>NSMutableURLRequest</code> 中没有禁止缓存等。这个方法属于 <code>NSURLSessionDataDelegate</code>, 但是有时你会发现 <code>NSURLSession</code> 中设置的 <code>delegate</code>后，一个回调函数都没有被调用</p>
+
+<blockquote>
+<p>当你使用类似 <code>func dataTaskWithURL(_ url: NSURL, completionHandler completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) -> NSURLSessionDataTask</code> 这些带有 <code>completionHandler</code> 的方法时，delegate 将不会被调用。</p>
+</blockquote>
+
+<p>这一点确实很奇怪，因为这个原因，当我使用带有 <code>completionHandler</code> 时，我甚至都不能通过 <code>willCacheResponse</code> 来强制缓存了。</p>
+
+<p>除此之外，我还发现了 NSULRRequest 中对请求超时时间的设置几乎是没用的，当你设置 <code>timeoutInterval</code> 为很小的值，比如 <code>10s</code> 的时候，他不会起任何作用。Google 了一圈，有人说貌似这时 Apple 故意这么设计的，你不能指定小余 <code>240s</code> 的数字, 但是有人说这个已经改过了，也有人说这个限制只针对 POST 请求，可以参考这几个链接：</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/11718256/nsurlrequest-timeout-ios" title="">NSURLRequest Timeout IOS</a></li>
+<li><a href="http://stackoverflow.com/questions/1466389/nsmutableurlrequest-timeout-interval-not-taken-into-consideration-for-post-reque" title="">NSMutableURLRequest timeout interval not taken into consideration for POST requests</a></li>
+<li><a href="http://stackoverflow.com/questions/10408185/timeout-for-nsmutableurlrequest-not-working" title="">Timeout for NSMutableURLRequest not working</a></li>
+</ul>
+
+<p>但是我发现我设置的超时时间都没有起过作用, 现在唯一的解决办法就是去设置一个 <code>NSTimer</code> 然后手动取消请求了。</p>
+
+      </div> 
+      <div class = 'article-author'>
+        <div class = 'article-author-avatar'>
+          
+          <a href=''><img src='http://wx.qlogo.cn/mmopen/X3L5jTrqCsk1Hh0fy668qI9yAH3O11dSzzXzHicBNoGKqYvAKGwZicnMQicOwyeuCyibYjFHvJfXw9Njb7JC9gwF7saPkLb5epUK/0'/></a> 
+          
+        </div>   
+        <p class = 'm-t-30'>
+          adow 
+        </p>
+        
+        <p>
+          iOS 开发者, 有时写点 Python
+        </p>
+        
+        <div class = 'clearfix'></div>
+        <div class = 'article-author-social'>
+          <ul>
+            
+            <li><a href = 'https://weibo.com/adow'><img src = '/_themes/simple/images/sina-weibo.png'/></a></li> 
+            
+            
+            <li><a href = 'https://github.com/adow'><img src = '/_themes/simple/images/github.png'/></a></li> 
+            
+            
+            
+            <li><a href = 'https://twitter.com/reynoldqin'><img src = '/_themes/simple/images/twitter.png'/></a></li>
+            
+          </ul>
+        </div>
+      </div>
+      
+      <div class="article-navigation">
+        <ul>
+          
+          <li class = 'next'>上一篇: <a href = 'awpromise.html'> 探究 Promise 对象</a></li> 
+          
+          
+          <li class = 'previous'>下一篇: <a href = 'you-forget-nsurlcache.html'>被忽视的 NSURLCache</a></li> 
+          
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+      <!-- JiaThis Button BEGIN -->
+      <div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+      <a class="jiathis_button_tsina"></a>
+      <a class="jiathis_button_twitter"></a>
+      <a class="jiathis_button_weixin"></a>
+      <a class="jiathis_button_pocket"></a>
+      </div>
+      <script type="text/javascript" >
+      var title = '说说 NSURLCache 中的那些坑';
+      
+      var jiathis_config={
+        summary:"",
+        shortUrl:false,
+        hideMore:true,
+        title:title,
+        url:'http://codingnext.com/nsurlcache.html'
+      }
+      </script>      
+      <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+      <!-- JiaThis Button END -->
+      <div class="clearfix"></div>
+      
+      <div id="disqus_thread"></div>
+      <script>
+      /**
+      * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+      */
+      var disqus_config = function () {
+        this.page.url = 'http://codingnext.com/nsurlcache.html'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'nsurlcache.html' // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+
+      s.src = '//adowblog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      
+      <div class = 'footer'>
+        Powered by MING 
+      </div>
+    </div>
+  </div>
+</body>
+<script type = 'text/javascript'>
+window.onscroll = function(){
+  var document_top = document.documentElement.scrollTop;
+  var body_top = document.body.scrollTop;
+  //console.log(document_top.toString() + ',' + body_top.toString());
+  var site_nav = $('#site-nav');
+  if (body_top >= 100.0) {
+    site_nav.css('visibility','hidden');
+  }
+  else {
+    site_nav.css('visibility','visible');
+  }
+};
+
+$(document).ready(function(){
+
+  $('.site-menu').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','block');
+      });
+  $('.site-links-mobile-close').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','none');
+      });
+  /// resize images when resize window
+  $(window).resize(function(){
+      var screen_width = $(window).width() 
+      //console.log(screen_width);
+      var img_list = $('#article-content p img');
+      img_list = [].slice.call(img_list);
+      for (var a in img_list) {
+        var img_dom = img_list[a];
+        var img = $(img_dom);
+        resize_img(img); 
+      }
+      });
+
+  /// resize images when loaded
+  var img_list = $('#article-content p img');
+  img_list = [].slice.call(img_list);
+  for (var a in img_list) {
+    var img_dom = img_list[a];
+    var img = $(img_dom);
+    img.load(function(){
+        resize_img($(this)); 
+
+    });
+  }
+});
+
+
+
+
+function resize_img(img){
+  var screen_width = $(window).width();
+  var p = img.parent();
+  var natural_width = img[0].naturalWidth;
+  if (screen_width < natural_width ){
+    var p_width = p.width();
+    var padding = (screen_width - p_width) / 2.0;
+    img.css('width',screen_width)
+      .css('max-width','none')
+      .css('margin-left', -1.0 * padding)
+      .css('margin-right',-1.0 * padding)
+      ;
+    img.parent().css('max-width','none');
+  }
+  else {
+    img.css('max-width','100%')
+      .css('margin-left','auto')
+      .css('margin-right','auto');
+    var p_max = screen_width > 768.0 ? '800.0' :'768.0';
+    img.parent().css('max-width',p_max);
+  }
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79374744-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="vTaWd72F_kJY6mNbfoCQuutuGdH1kSsg7o3F31b3wgg" />
+  <meta name="baidu-site-verification" content="6rfk66K9Nk" />
+    
+  <title>AWSQLiteDB</title>
+  
+  <meta name="author" content="adow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/_themes/default/vendor/normalize.css">
+  <script src = "/_themes/default/vendor/jquery.min.js"></script>
+  <link rel="stylesheet" href="/_themes/default/layout.css">
+  <link rel="alternate" type="application/rss+xml" title="CodingNEXT" href="http://codingnext.com/atom.xml">
+   <style type="text/css">
+    
+    
+    #article-header {
+      background-image:url('http://7vihfk.com1.z0.glb.clouddn.com/photo-1452723312111-3a7d0db0e024.jpeg');
+    }
+    
+  </style>  
+</head>
+<body>
+  <div id="layout-container">
+    <div id = 'site-nav'>
+      <div class = 'site-name'><span class = 'site-name-desktop'><a href = 'index.html'>CodingNEXT</a></span></div>
+      <ul class = 'site-links'>
+        
+        <li><a href = 'archive.html'>存档</a></li>
+        
+        <li><a href = 'about.html'>关于</a></li>
+        
+      </ul>
+      <div class = 'site-menu'>
+        <a href='#'><img src= '/_themes/default/images/menu.png'/></a> 
+      </div>
+      
+    </div>
+    <div id = 'site-links-mobile'>
+      <a class = 'site-links-mobile-close' href = '#'>close</a>
+      <div class="clearfix"></div>
+      <ul>
+        
+        <li><a href = 'archive.html'>存档</a></li>
+        
+        <li><a href = 'about.html'>关于</a></li>
+        
+      </ul>
+    </div>
+    <div class ='clearfix'></div>
+    <div id ='article-header'>
+      <div id = 'article-header-gradient'></div>
+      <div id = 'article-header-container'>
+        
+        <small class = 'category-mobile'>Code</small>
+        
+        <div class = 'article-header-category-title-line'></div>
+        <h1 class = 'post-title'>
+          AWSQLiteDB
+          
+          <small class = 'category-desktop'>Code</small>
+          
+        </h1>
+        
+        <h3 class = 'post-subtitle'>AWSQLiteDB a simple wrapper for libsqlite3.0 in Swift</h3>
+        
+        <p class = 'publish-date post-meta'>adow 发布于 2016-03-08</p>
+      </div>
+    </div> 
+    <div id="article-content">
+      <div id="article-content-body" class = 'post'>
+      <p>AWSQLiteDB a simple wrapper for libsqlite3.0 in Swift</p>
+
+<p>项目地址: <a href="https://github.com/adow/AWSQLiteDB" title="">AWSQLiteDB</a></p>
+<h2>安装</h2><h3>Carthage</h3>
+<p><code>Carthage</code> 是一个去中心化的包管理工具。</p>
+
+<p>安装 Carthage</p>
+
+<pre><code>$ brew update
+$ brew install carthage</code></pre>
+
+<p>集成 AWSQLiteDB 到 iOS 项目</p>
+
+<ol>
+<li><p>在项目中创建 <code>Cartfile</code> 文件，并添加下面内容</p>
+
+<pre><code>git "https://github.com/adow/AWSQLiteDB.git" &gt;= 0.1.2</code></pre></li>
+<li><p>运行 <code>Carthage update</code>, 获取 AWSQLiteDB;</p></li>
+<li><p>拖动 <code>Carthage/Build/iOS</code> 下面的 <code>AWSQLiteDB.framwork</code> 到项目 <code>Targets</code>, <code>General</code> 设置标签的 <code>Linked Frameworks and Linraries</code> 中；</p></li>
+<li><p>在 <code>Targes</code> 的 <code>Build Phases</code> 设置中，点击 <code>+</code> 按钮，添加 <code>New Run Script Phase</code> 来添加脚本:</p>
+
+<pre><code>/usr/local/bin/carthage copy-frameworks</code></pre>
+
+<p>同时在下面的 <code>Input Files</code> 中添加:</p>
+
+<pre><code>$(SRCROOT)/Carthage/Build/iOS/AWSQLiteDB.framework</code></pre></li>
+</ol>
+<h3>Cocoapods</h3>
+<pre><code>source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'AWSQLiteDB', '~&gt; 0.1.2'</code></pre>
+<h3>手动安装</h3><h4>通过 Git Submodule 集成</h4>
+<p>通过 Submodule 将 SecrecySwift 作为 Embedded Framework 添加到项目中。</p>
+
+<ol>
+<li>首先确保项目已经在 git 仓库中;</li>
+<li><p>添加 <code>AWSQLiteDB</code> 作为 Submodule:</p>
+
+<pre><code>git submodule add https://github.com/adow/AWSQLiteDB.git</code></pre></li>
+<li><p>在 Xcode 中打开项目，将 AWSQLiteDB.xcodeproj 拖放到你的项目的根目录下;</p></li>
+<li><p>在你的项目下，选择 <code>Targets</code> , <code>General</code> 中添加 <code>Embedded Binaries</code>, 选择 <code>AWSQLiteDB.framework</code>, 确保 <code>Build Phases</code> 中的 <code>Link Binary with Libraries</code> 中有 <code>AWSQLiteDB.framework</code>;</p></li>
+</ol>
+<h4>或者直接使用 AWSQLiteDB.swift</h4>
+<ol>
+<li>复制 AWSQLiteDB.swift 到项目中</li>
+<li>在项目的 <code>Targets</code> 的 <code>Build Phases</code> 的 <code>Link Binary with Libraries</code> 中添加 <code>libsqlite3.0.tbd</code>;</li>
+</ol>
+<h2>使用</h2><h3>打开数据库</h3>
+<pre><code>let cache_dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]
+let db_filename = "\(cache_dir)/sql.db"
+let db = SQLiteDB(path: db_filename)</code></pre>
+<h3>关闭数据库</h3>
+<p>SQLiteDB 实例被释放的时候会自动关闭数据库</p>
+
+<pre><code>db.close()</code></pre>
+<h3>打开单例的数据库</h3>
+<pre><code>let cache_dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]
+let db_filename = "\(cache_dir)/sql.db"
+guard let _ = try? SQLiteDB.setupSharedDBPath(db_filename) else {
+    return
+}</code></pre>
+<h3>执行 Execute</h3>
+<p>创建表</p>
+
+<pre><code>var sql = "create table test (id INTEGER PRIMARY KEY AUTOINCREMENT, name CHAR(32) NOT NULL)"
+print("create table:\(SQLiteDB.sharedDB.execute(sql))")</code></pre>
+
+<p>Insert</p>
+
+<pre><code>sql = "insert into test (id,name) values (?,?)"
+var result = SQLiteDB.sharedDB.execute(sql, parameters:9, "adow")
+print("insert:\(result)")</code></pre>
+
+<p>update</p>
+
+<pre><code>sql = "update test set name=? where id =?"
+result = SQLiteDB.sharedDB.execute(sql, parameters: "reynold qin",9)
+print("update:\(result)")</code></pre>
+<h3>查询 Query</h3>
+<pre><code>sql = "select * from test"
+let rows = SQLiteDB.sharedDB.query(sql)
+for r in rows {
+    let id = r["id"]!.value!.integer!
+    let name = r["name"]!.value!.string!
+    print("\(id):\(name)")
+}</code></pre>
+<h2>参考</h2>
+<ul>
+<li><a href="http://stackoverflow.com/questions/24102775/accessing-an-sqlite-database-in-swift" title="">Accessing an SQLite Database in Swift</a></li>
+<li><a href="http://blog.csdn.net/u012485637/article/details/44486923" title=""> SQLite3 C/C++ 开发接口简介（API函数）一、二、三</a></li>
+<li><a href="http://www.runoob.com/sqlite/sqlite-c-cpp.html" title="">SQLite - C/C++</a></li>
+</ul>
+
+      </div>
+      <div class = 'article-author'>
+        <div class = 'article-author-avatar'>
+          
+          <a href=''><img src='http://wx.qlogo.cn/mmopen/X3L5jTrqCsk1Hh0fy668qI9yAH3O11dSzzXzHicBNoGKqYvAKGwZicnMQicOwyeuCyibYjFHvJfXw9Njb7JC9gwF7saPkLb5epUK/0'/></a> 
+          
+        </div>   
+        <p class = 'm-t-30'>
+          adow 
+        </p>
+        
+        <p>
+          iOS 开发者, 有时写点 Python
+        </p>
+        
+        <div class = 'clearfix'></div>
+        <div class = 'article-author-social'>
+          <ul>
+            
+            <li><a href = 'https://weibo.com/adow'><img src = '/_themes/default/images/sina-weibo.png'/></a></li> 
+            
+            
+            <li><a href = 'https://github.com/adow'><img src = '/_themes/default/images/github.png'/></a></li> 
+            
+            
+            
+            <li><a href = 'https://twitter.com/reynoldqin'><img src = '/_themes/default/images/twitter.png'/></a></li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="article-navigation">
+        <ul>
+          
+          <li class = 'next'>上一篇: <a href = 'about.html'> 关于我</a></li> 
+          
+          
+          <li class = 'previous'>下一篇: <a href = 'uitableview.html'>奇怪的 UITableView</a></li> 
+          
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+      <!-- JiaThis Button BEGIN -->
+      <div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+      <a class="jiathis_button_tsina"></a>
+      <a class="jiathis_button_twitter"></a>
+      <a class="jiathis_button_weixin"></a>
+      <a class="jiathis_button_pocket"></a>
+      </div>
+      <script type="text/javascript" >
+      var title = 'AWSQLiteDB';
+      
+      title += ' - ' + 'AWSQLiteDB a simple wrapper for libsqlite3.0 in Swift';
+      
+      var jiathis_config={
+        summary:"",
+        shortUrl:false,
+        hideMore:true,
+        title:title,
+        url:'http://codingnext.com/awsqilitedb.html'
+      }
+      </script>
+      <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+      <!-- JiaThis Button END -->
+      <div class="clearfix"></div>
+      
+      <div id="disqus_thread"></div>
+      <script>
+      /**
+      * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+      */
+      var disqus_config = function () {
+        this.page.url = 'http://codingnext.com/awsqilitedb.html'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'awsqilitedb.html' // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+
+      s.src = '//adowblog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+       
+      
+      <div class = 'footer'>
+        Powered by MING 
+      </div>
+    </div>
+  </div>
+</body>
+<script type = 'text/javascript'>
+window.onscroll = function(){
+  var document_top = document.documentElement.scrollTop;
+  var body_top = document.body.scrollTop;
+  //console.log(document_top.toString() + ',' + body_top.toString());
+  var site_nav = $('#site-nav');
+  if (body_top >= 100.0) {
+    site_nav.css('visibility','hidden');
+  }
+  else {
+    site_nav.css('visibility','visible');
+  }
+};
+
+$(document).ready(function(){
+
+  $('.site-menu').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','block');
+      });
+  $('.site-links-mobile-close').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','none');
+      });
+  /// resize images when resize window
+  $(window).resize(function(){
+      var screen_width = $(window).width() 
+      //console.log(screen_width);
+      var img_list = $('#article-content p img');
+      img_list = [].slice.call(img_list);
+      for (var a in img_list) {
+        var img_dom = img_list[a];
+        var img = $(img_dom);
+        resize_img(img); 
+      }
+      });
+
+  /// resize images when loaded
+  var img_list = $('#article-content p img');
+  img_list = [].slice.call(img_list);
+  for (var a in img_list) {
+    var img_dom = img_list[a];
+    var img = $(img_dom);
+    img.load(function(){
+        resize_img($(this)); 
+
+    });
+  }
+});
+
+
+
+
+function resize_img(img){
+  var screen_width = $(window).width();
+  var p = img.parent();
+  var natural_width = img[0].naturalWidth;
+  if (screen_width < natural_width ){
+    var p_width = p.width();
+    var padding = (screen_width - p_width) / 2.0;
+    img.css('width',screen_width)
+      .css('max-width','none')
+      .css('margin-left', -1.0 * padding)
+      .css('margin-right',-1.0 * padding)
+      ;
+    img.parent().css('max-width','none');
+  }
+  else {
+    img.css('max-width','100%')
+      .css('margin-left','auto')
+      .css('margin-right','auto');
+    var p_max = screen_width > 768.0 ? '800.0' :'768.0';
+    img.parent().css('max-width',p_max);
+  }
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79374744-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>

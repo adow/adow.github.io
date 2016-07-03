@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="vTaWd72F_kJY6mNbfoCQuutuGdH1kSsg7o3F31b3wgg" />
+  <meta name="baidu-site-verification" content="6rfk66K9Nk" />
+    
+  <title>奇怪的 UITableView</title>
+  
+  <meta name="author" content="adow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/_themes/default/vendor/normalize.css">
+  <script src = "/_themes/default/vendor/jquery.min.js"></script>
+  <link rel="stylesheet" href="/_themes/default/layout.css">
+  <link rel="alternate" type="application/rss+xml" title="CodingNEXT" href="http://codingnext.com/atom.xml">
+   <style type="text/css">
+    
+    
+    #article-header {
+      background-image:url('http://7vihfk.com1.z0.glb.clouddn.com/photo-1451188502541-13943edb6acb.jpeg');
+    }
+    
+  </style>  
+</head>
+<body>
+  <div id="layout-container">
+    <div id = 'site-nav'>
+      <div class = 'site-name'><span class = 'site-name-desktop'><a href = 'index.html'>CodingNEXT</a></span></div>
+      <ul class = 'site-links'>
+        
+        <li><a href = 'archive.html'>存档</a></li>
+        
+        <li><a href = 'about.html'>关于</a></li>
+        
+      </ul>
+      <div class = 'site-menu'>
+        <a href='#'><img src= '/_themes/default/images/menu.png'/></a> 
+      </div>
+      
+    </div>
+    <div id = 'site-links-mobile'>
+      <a class = 'site-links-mobile-close' href = '#'>close</a>
+      <div class="clearfix"></div>
+      <ul>
+        
+        <li><a href = 'archive.html'>存档</a></li>
+        
+        <li><a href = 'about.html'>关于</a></li>
+        
+      </ul>
+    </div>
+    <div class ='clearfix'></div>
+    <div id ='article-header'>
+      <div id = 'article-header-gradient'></div>
+      <div id = 'article-header-container'>
+        
+        <small class = 'category-mobile'>code</small>
+        
+        <div class = 'article-header-category-title-line'></div>
+        <h1 class = 'post-title'>
+          奇怪的 UITableView
+          
+          <small class = 'category-desktop'>code</small>
+          
+        </h1>
+        
+        <h3 class = 'post-subtitle'>iOS 开发中一些经常的坑</h3>
+        
+        <p class = 'publish-date post-meta'>adow 发布于 2016-03-12</p>
+      </div>
+    </div> 
+    <div id="article-content">
+      <div id="article-content-body" class = 'post'>
+      <p>从刚开始做 iOS 开发的时候开始，UITableView 就一直是被我用的做多的 UIKit 控件，这么多年过去了，有时还是会在使用 UITableView 的过程中遇到一些奇怪的问题。</p>
+
+<p>在大部分的开发过程中，每当遇到 UITableView 的奇怪的的现象，我总寄希望于自定义的 UITableViewCell, 也就是直接继承一个 UITableViewCell, 然后在上面添加自己的控件，这样的做法屡试不爽。但是过后，有时会在想，到底是什么原因会造成这样奇怪的问题呢？</p>
+<h2>Grouped UITableView 和 奇怪的 Section Header</h2>
+<p>当我们使用 UITableViewStyle.Grouped 的样式来创建一个 UITableView 的时候，而同时又去修改某个 Section 中的 header 高度时，就会出现很奇怪的现象:</p>
+
+<blockquote>
+<p>在 UITableViewStyleGrouped 中，你不能直接把 heightForHeaderInSection 修改为一个很小的值 （小余 22.0）</p>
+</blockquote>
+
+<p>默认的情况下， heightForHeaderInSection 和 heightForFooterInSection 都是 <code>22.0</code>，我们可以在 UITableViewDelegate 中来设置这两个值</p>
+
+<pre><code>override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -&gt; CGFloat {
+    return 60.0
+}</code></pre>
+
+<p>这样的确起效果了，然而，当你指定的高度为 <code>10.0</code> 时，显示的时候却仍然是 22.0 的高度。</p>
+
+<pre><code>override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -&gt; CGFloat {
+    return 10.0
+}</code></pre>
+
+<p>没错，就是怎么奇怪，当你设置小余 <code>22.0</code> 的高度时候就是无效的。</p>
+
+<p>解决的办法也很奇葩， <strong>你必须同时指定一下 heightForFooterInSection, 比如指定一个非常小的值 (0.0001)</strong>。</p>
+
+<pre><code>override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -&gt; CGFloat {
+        return 0.0001
+}</code></pre>
+
+<p>这样的 Section Header 就显示正确了。</p>
+
+<blockquote>
+<p>这个问题只有在使用 UITableViewStyle.Grouped 来创建 UITableView 的时候才会出现，而默认的样式中随意指定 Section Header 高度都是可以的。</p>
+</blockquote>
+
+<p>设置 heightForFooterInSection 还顺带解决了另一个问题。有时我们会看到一个 UITableView 只有几行有内容（并没有撑满一屏）的时候，UITableView 会为剩余空白的地方仍然绘制分割线。而当你设置了 heightForFooterInSection 之后，他们就不会出现了，只会显示空的位置。</p>
+<h2>UITableViewCell 的分割线</h2>
+<p>为什么 UITableViewCell 的分割线不能从左边直接开始而非要留一些空呢？ 如果我们看看系统自带的 App, 他们中的分割线都是离左边有些距离的。似乎这就是现在 iOS 的设计风格。</p>
+
+<p>然而，我遇到的所有设计师都是会把这根线撑满整个 UITableViewCell 的宽度的。所以我做过的 App 中所有的 UITableViewCell 都需要改掉这跟线的位置。 在 <code>iOS7</code> 中，只要直接修改 <code>UITableView.separatorInset</code> 和 <code>UITableViewCell.separatorInset</code> 就可以控制分割线的位置了。比如:</p>
+
+<pre><code>tableView.separatorInset = UIEdgeInsetsZero
+tableViewCell.speratorInset = UIEdgeInsetsZero</code></pre>
+
+<p>但是 iOS8/iOS9 这样却没用了, 因为从 iOS 8 开始，又有了一个 <code>layoutMargin</code>，所以得改成:</p>
+
+<pre><code>self.separatorInset = UIEdgeInsetsZero
+    if #available(iOS 8.0, *) {
+        self.layoutMargins = UIEdgeInsetsZero
+    }</code></pre>
+
+<p><strong>UITableView/UITableViewCell</strong> 中都得这样设置。而且奇怪的是， <code>iOS 8</code> 中还得设置 <code>tableViewCell.preservesSuperviewLayoutMargins = false</code> 才可以。而 <code>iOS 9</code> 却不设置也可以。</p>
+
+<pre><code>extension UITableViewCell {
+/// 让分割线贴到左边
+    func cx_fixSeperator() {
+        self.separatorInset = UIEdgeInsetsZero
+        if #available(iOS 8.0, *) {
+            self.layoutMargins = UIEdgeInsetsZero
+            self.preservesSuperviewLayoutMargins = false /// 只有 iOS8 需要这样
+        }
+    }
+}</code></pre>
+<h3>使用 UIAppearance</h3>
+<p>由于一般 App 中所有的 UITableView 风格都是统一的，我想应该直接可以通过 UIAppearance 来控制所有的分割线位置了吧，比如在 <code>func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool</code> 中设置他：</p>
+
+<pre><code>UITableView.appearance().separatorInset = UIEdgeInsetsZero
+    if #available(iOS 8.0, *) {
+        UITableView.appearance().layoutMargins = UIEdgeInsetsZero
+    }
+    UITableViewCell.appearance().separatorInset = UIEdgeInsetsZero
+    if #available(iOS 8.0, *) {
+        UITableViewCell.appearance().layoutMargins = UIEdgeInsetsZero
+    }
+    if #available(iOS 8.0, *) {
+        UITableViewCell.appearance().preservesSuperviewLayoutMargins = false
+    }</code></pre>
+
+<p><strong>但是我又发现这样做没啥作用！？原因不明</strong></p>
+<h3>去掉一个 UITableViewCell 的分割线的方法</h3>
+<p>通过 <code>UITableView.separatorStyle = UITableViewCellSeparatorStyle.None</code>  可以去掉所有的分割线，那要是想去掉 <strong>其中一个</strong> UITableViewCell 的分割线该怎么办呢? 其实也就是这时这个 Cell 的 <code>separatorInset/layoutMargins</code>, 可以设置偏移到屏幕外面的距离去:</p>
+
+<pre><code>/// 删除分割线
+func cx_removeSeperator() {
+    self.separatorInset = UIEdgeInsetsMake(0.0, 1000.0, 0.0, 0.0)
+    if #available(iOS 8.0, *) {
+        self.layoutMargins = UIEdgeInsetsMake(0.0, 1000.0, 0.0, 0.0)
+    }
+}</code></pre>
+
+<p>但是你会发现有时这样做也是没用的，在 UITabelViewStyle.Grouped 的 UITableView 中，由于 UITableViewHeaderFooterView 上就会有一根分割线，所以以这样的方式来删除 section 中最后一个 cell 的分割线时，其实是没用的。</p>
+
+<p>同时，我发现用这种方法后会让 UITableView.textLabel 的内容偏移到后面去，所以这并不是一个好的方法。</p>
+<h2>被遮挡的子视图背景色</h2>
+<p>当 UITableViewCell 中增加一些子视图的时候，有时点击 Cell 的时候就会发现有些子视图的背景色不见了。</p>
+
+<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/Simulator%20Screen%20Shot%202016%E5%B9%B43%E6%9C%8830%E6%97%A5%20%E4%B8%8B%E5%8D%882.37.42.png" alt=""></p>
+
+<p>这是由于当点击 Cell 的时候，子元素会变成 Hightlighted 状态，而选中之后又会变成 Selected 状态，UITableViewCell 的状态会传递给子视图。有些 View (比如 UIButton, UILabel 等) 会根据状态呈现不同的样式的时候，他们就会在 UITableViewCell 被点击和选择的时候被呈现出不同的样子了。</p>
+
+<p>解决的办法是重写 UITableView 的 <code>- setSelected:animated:</code> 和 <code>- setHighlighted:animated:</code> 方法，并在这里设置子视图的样式。</p>
+
+<pre><code>override func setSelected(selected: Bool, 
+    animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    self.button.backgroundColor = UIColor.blackColor()
+
+}
+override func setHighlighted(highlighted: Bool, 
+    animated: Bool) {
+     super.setSelected(selected, animated: animated)
+     self.button.backgroundColor = UIColor.blackColor()
+ }</code></pre>
+
+<p>或者就干脆把 <code>selectionStyle</code> 改成 <code>UITableViewCellSelectionStyle.None</code> 吧。</p>
+
+<p>我印象中还有一些奇怪的坑在这个 UITableView 中，只是一时想不起来了...</p>
+
+      </div>
+      <div class = 'article-author'>
+        <div class = 'article-author-avatar'>
+          
+          <a href=''><img src='http://wx.qlogo.cn/mmopen/X3L5jTrqCsk1Hh0fy668qI9yAH3O11dSzzXzHicBNoGKqYvAKGwZicnMQicOwyeuCyibYjFHvJfXw9Njb7JC9gwF7saPkLb5epUK/0'/></a> 
+          
+        </div>   
+        <p class = 'm-t-30'>
+          adow 
+        </p>
+        
+        <p>
+          iOS 开发者, 有时写点 Python
+        </p>
+        
+        <div class = 'clearfix'></div>
+        <div class = 'article-author-social'>
+          <ul>
+            
+            <li><a href = 'https://weibo.com/adow'><img src = '/_themes/default/images/sina-weibo.png'/></a></li> 
+            
+            
+            <li><a href = 'https://github.com/adow'><img src = '/_themes/default/images/github.png'/></a></li> 
+            
+            
+            
+            <li><a href = 'https://twitter.com/reynoldqin'><img src = '/_themes/default/images/twitter.png'/></a></li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="article-navigation">
+        <ul>
+          
+          <li class = 'next'>上一篇: <a href = 'awsqilitedb.html'> AWSQLiteDB</a></li> 
+          
+          
+          <li class = 'previous'>下一篇: <a href = 'tools-2016.html'>2016 我的工具箱</a></li> 
+          
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+      <!-- JiaThis Button BEGIN -->
+      <div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+      <a class="jiathis_button_tsina"></a>
+      <a class="jiathis_button_twitter"></a>
+      <a class="jiathis_button_weixin"></a>
+      <a class="jiathis_button_pocket"></a>
+      </div>
+      <script type="text/javascript" >
+      var title = '奇怪的 UITableView';
+      
+      title += ' - ' + 'iOS 开发中一些经常的坑';
+      
+      var jiathis_config={
+        summary:"",
+        shortUrl:false,
+        hideMore:true,
+        title:title,
+        url:'http://codingnext.com/uitableview.html'
+      }
+      </script>
+      <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+      <!-- JiaThis Button END -->
+      <div class="clearfix"></div>
+      
+      <div id="disqus_thread"></div>
+      <script>
+      /**
+      * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+      */
+      var disqus_config = function () {
+        this.page.url = 'http://codingnext.com/uitableview.html'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'uitableview.html' // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+
+      s.src = '//adowblog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+       
+      
+      <div class = 'footer'>
+        Powered by MING 
+      </div>
+    </div>
+  </div>
+</body>
+<script type = 'text/javascript'>
+window.onscroll = function(){
+  var document_top = document.documentElement.scrollTop;
+  var body_top = document.body.scrollTop;
+  //console.log(document_top.toString() + ',' + body_top.toString());
+  var site_nav = $('#site-nav');
+  if (body_top >= 100.0) {
+    site_nav.css('visibility','hidden');
+  }
+  else {
+    site_nav.css('visibility','visible');
+  }
+};
+
+$(document).ready(function(){
+
+  $('.site-menu').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','block');
+      });
+  $('.site-links-mobile-close').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','none');
+      });
+  /// resize images when resize window
+  $(window).resize(function(){
+      var screen_width = $(window).width() 
+      //console.log(screen_width);
+      var img_list = $('#article-content p img');
+      img_list = [].slice.call(img_list);
+      for (var a in img_list) {
+        var img_dom = img_list[a];
+        var img = $(img_dom);
+        resize_img(img); 
+      }
+      });
+
+  /// resize images when loaded
+  var img_list = $('#article-content p img');
+  img_list = [].slice.call(img_list);
+  for (var a in img_list) {
+    var img_dom = img_list[a];
+    var img = $(img_dom);
+    img.load(function(){
+        resize_img($(this)); 
+
+    });
+  }
+});
+
+
+
+
+function resize_img(img){
+  var screen_width = $(window).width();
+  var p = img.parent();
+  var natural_width = img[0].naturalWidth;
+  if (screen_width < natural_width ){
+    var p_width = p.width();
+    var padding = (screen_width - p_width) / 2.0;
+    img.css('width',screen_width)
+      .css('max-width','none')
+      .css('margin-left', -1.0 * padding)
+      .css('margin-right',-1.0 * padding)
+      ;
+    img.parent().css('max-width','none');
+  }
+  else {
+    img.css('max-width','100%')
+      .css('margin-left','auto')
+      .css('margin-right','auto');
+    var p_max = screen_width > 768.0 ? '800.0' :'768.0';
+    img.parent().css('max-width',p_max);
+  }
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79374744-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>

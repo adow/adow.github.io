@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="vTaWd72F_kJY6mNbfoCQuutuGdH1kSsg7o3F31b3wgg" />
+  <meta name="baidu-site-verification" content="6rfk66K9Nk" />
+    
+  <title>SecrecySwift</title>
+  
+  <meta name="author" content="adow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/_themes/default/vendor/normalize.css">
+  <script src = "/_themes/default/vendor/jquery.min.js"></script>
+  <link rel="stylesheet" href="/_themes/default/layout.css">
+  <link rel="alternate" type="application/rss+xml" title="CodingNEXT" href="http://codingnext.com/atom.xml">
+   <style type="text/css">
+    
+    
+    #article-header {
+      background-image:url('https://drscdn.500px.org/photo/26037507/q%3D80_m%3D1500/2ae8bbce10c5f129894150b13e4fb15c');
+    }
+    
+  </style>  
+</head>
+<body>
+  <div id="layout-container">
+    <div id = 'site-nav'>
+      <div class = 'site-name'><span class = 'site-name-desktop'><a href = 'index.html'>CodingNEXT</a></span></div>
+      <ul class = 'site-links'>
+        
+        <li><a href = 'archive.html'>存档</a></li>
+        
+        <li><a href = 'about.html'>关于</a></li>
+        
+      </ul>
+      <div class = 'site-menu'>
+        <a href='#'><img src= '/_themes/default/images/menu.png'/></a> 
+      </div>
+      
+    </div>
+    <div id = 'site-links-mobile'>
+      <a class = 'site-links-mobile-close' href = '#'>close</a>
+      <div class="clearfix"></div>
+      <ul>
+        
+        <li><a href = 'archive.html'>存档</a></li>
+        
+        <li><a href = 'about.html'>关于</a></li>
+        
+      </ul>
+    </div>
+    <div class ='clearfix'></div>
+    <div id ='article-header'>
+      <div id = 'article-header-gradient'></div>
+      <div id = 'article-header-container'>
+        
+        <small class = 'category-mobile'>Code</small>
+        
+        <div class = 'article-header-category-title-line'></div>
+        <h1 class = 'post-title'>
+          SecrecySwift
+          
+          <small class = 'category-desktop'>Code</small>
+          
+        </h1>
+        
+        <h3 class = 'post-subtitle'>AES/CBC/EBC/RSA in Swift</h3>
+        
+        <p class = 'publish-date post-meta'>adow 发布于 2016-02-29</p>
+      </div>
+    </div> 
+    <div id="article-content">
+      <div id="article-content-body" class = 'post'>
+      <p>项目地址: <a href="https://github.com/adow/SecrecySwift" title="">SecrecySwift</a></p>
+
+<p>SecrecySwift ，通过包装 <code>CommonCrypto</code> 和 <code>Security.framework</code>,实现 Swift 下的摘要方法/AES/RSA加密和签名。</p>
+<h2>特性</h2>
+<ul>
+<li>摘要算法 (Digest/HMAC): <code>MD2</code>/<code>MD4</code>/<code>MD5</code>/<code>SHA1</code>/<code>SHA224</code>/<code>SHA384</code>/<code>SHA512</code>；</li>
+<li>AES 加密和解密: <code>EBC</code>/<code>CBC</code> 模式；</li>
+<li>RSA 加密/解密以及签名和验证算法: <code>MD2</code>/<code>MD5</code>/<code>SHA1</code>/<code>SHA224</code>/<code>SHA384</code>；</li>
+</ul>
+<h2>安装</h2><h3>使用 Carthage 安装</h3>
+<p><code>Carthage</code> 是一个去中心化的包管理工具。</p>
+
+<p>安装 Carthage</p>
+
+<pre><code>$ brew update
+$ brew install carthage</code></pre>
+
+<p>集成 SecrecySwift 到 iOS 项目</p>
+
+<ol>
+<li><p>在项目中创建 <code>Cartfile</code> 文件，并添加下面内容</p>
+
+<pre><code>git "https://github.com/adow/SecrecySwift.git" &gt;= 0.3.3</code></pre></li>
+<li><p>运行 <code>Carthage update</code>, 获取 SecrecySwift;</p></li>
+<li><p>拖动 <code>Carthage/Build/iOS</code> 下面的 <code>Secrecy.framwork</code> 到项目 <code>Targets</code>, <code>General</code> 设置标签的 <code>Linked Frameworks and Linraries</code> 中；</p>
+
+<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/secrecy-1-800.jpg" alt="secrecy-1"></p></li>
+<li><p>在 <code>Targes</code> 的 <code>Build Phases</code> 设置中，点击 <code>+</code> 按钮，添加 <code>New Run Script Phase</code> 来添加脚本:</p>
+
+<pre><code>/usr/local/bin/carthage copy-frameworks</code></pre>
+
+<p>同时在下面的 <code>Input Files</code> 中添加:</p>
+
+<pre><code>$(SRCROOT)/Carthage/Build/iOS/Secrecy.framework</code></pre>
+
+<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/secrecy-2-800.jpg" alt="secrecy-2"></p></li>
+</ol>
+<h3>手动安装</h3><h4>通过 Git Submodule</h4>
+<p>通过 Submodule 将 SecrecySwift 作为 Embedded Framework 添加到项目中。</p>
+
+<ol>
+<li>首先确保项目已经在 git 仓库中;</li>
+<li><p>添加 <code>SecrecySwift</code> 作为 Submodule:</p>
+
+<pre><code>git submodule add https://github.com/adow/SecrecySwift.git</code></pre></li>
+<li><p>在 Xcode 中打开项目，将 SecrecySwift.xcodeproj 拖放到你的项目的根目录下;</p></li>
+<li><p>在你的项目下，选择 <code>Targets</code> , <code>General</code> 中添加 <code>Embedded Binaries</code>, 选择 <code>Secrecy.framework</code>, 确保 <code>Build Phases</code> 中的 <code>Link Binary with Libraries</code> 中有 <code>Secrecy.framework</code>;</p></li>
+</ol>
+<h4>项目中直接部署源代码 (兼容iOS7)</h4>
+<ol>
+<li>复制 <code>SecrecySwift</code> 目录下的这些文件到项目中</li>
+</ol>
+
+<pre><code>* AES.swift
+* Digest.swift
+* HMAC.swift
+* RSA.swift
+* SecrecyExtension.swift</code></pre>
+
+<ol>
+<li><p>在项目根目录下建立一个 CommonCrypto, 并建立一个 module.map 文件</p>
+
+<pre><code>module CommonCrypto [system] {
+    header "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/CommonCrypto/CommonCrypto.h"
+    link "CommonCrypto"
+    export *
+}</code></pre></li>
+<li><p>在项目 Targets 的 <code>Build Settings</code> 中添加 <code>Import Paths</code> 中添加 <code>CommonCrypto</code>。</p></li>
+<li><p>在 <code>Targets</code> 中 <code>Build Phases</code> 的 <code>Link Binary with Libraries</code> 中添加 <code>Security.framework</code> 和 <code>SystemConfiguration.framework</code>。</p></li>
+</ol>
+
+<p>这样就不需要 <code>import Secrecy</code>, 直接使用里面的函数了；</p>
+<h3>为什么没有 Cocoapods</h3>
+<p>我尝试了好多次使用 <code>Cocoapods</code> 发布，但是实在没有制作 Cocoapods 的经验，好像是由于需要链接 <code>CommonCrypto</code> 的缘故，我参考了很多人写的 podspec 文件，仍然无法正确的链接 <code>CommonCrypto</code>, <code>pod lib lint</code> 一直都失败。如果您知道如何正确的为这个项目写一个 <code>podspec</code>,请一定要发一个 Pull Request 给我。</p>
+<h2>使用</h2><h3>摘要和 HMAC</h3>
+<p>只要方法来自 SwiftSSL 项目: <a href="https://github.com/SwiftP2P/SwiftSSL" title="">https://github.com/SwiftP2P/SwiftSSL</a></p>
+
+<p>支持以下的摘要方法</p>
+
+<ul>
+<li>MD2；</li>
+<li>MD4；</li>
+<li>MD5；</li>
+<li>SHA1;</li>
+<li>SHA224；</li>
+<li>SHA256；</li>
+<li>SHA384；</li>
+<li>SHA512；</li>
+</ul>
+<h4>摘要方法:</h4>
+<p>NSData/String 的 <code>digestHex/digestBase64</code> 支持将摘要输出为 hex 和 base64 字符串;</p>
+
+<pre><code>let raw = "abc123"
+    print(raw.digestHex(DigestAlgorithm.MD5))
+    print(raw.digestBase64(DigestAlgorithm.MD5))</code></pre>
+<h4>HMAC 签名方法</h4>
+<p>NSData/String 的 <code>signHex/signBase64</code> 方法支持签名输出为 hex 和 base64 字符串;</p>
+
+<pre><code>let raw = "abc123"
+    print(raw.signHex(HMACAlgorithm.SHA1, key: "abc"))
+    print(raw.signBase64(HMACAlgorithm.SHA1, key: "abc"))
+    print(raw.signBase64(HMACAlgorithm.SHA1, key: "你好"))</code></pre>
+<h3>AES</h3>
+<p>支持 AES 模式 :</p>
+
+<ul>
+<li>EBC;</li>
+<li>CBC: </li>
+</ul>
+
+<p>** 只支持 PKCSPaddding7 的补齐方式；** </p>
+
+<p>根据提供的 Key 的长度，支持以下的加密方法</p>
+
+<ul>
+<li>AES128: 16位</li>
+<li>AES192: 24位;</li>
+<li>AES256: 32位;</li>
+</ul>
+<h4>EBC 模式</h4>
+<ul>
+<li><code>aesEBCEncrypt</code> 进行EBC模式加密，</li>
+<li><code>aesEBCDecryptFromHex</code> 从 hex 字符串进行EBC模式解密</li>
+<li><code>aesEBCDecryptBase64</code> 从 base64 字符串进行EBC解密</li>
+</ul>
+
+<p>示例: </p>
+
+<pre><code>let key = "0000000000000000"
+    let raw = "0123456789abcdef"
+    let encrypt_1 = raw.aesEBCEncrypt(key)
+    print(encrypt_1!.hexString)
+    print(encrypt_1!.hexString.aesEBCDecryptFromHex(key))
+    print(encrypt_1!.base64String)
+    print(encrypt_1!.base64String.aesEBCDecryptFromBase64(key))</code></pre>
+<h4>CBC 模式</h4>
+<p>CBC 模式可以指定 IV,如果不指定 IV 的话将用 0 填充;</p>
+
+<ul>
+<li><code>aesCBCEncrypt</code> 进行加密;</li>
+<li><code>aecCBCDecryptFromHex</code> 从 hex 字符串进行解密</li>
+<li><code>aesCBCDecryptFromBase64</code> 从 base64 字符串进行解密</li>
+</ul>
+
+<p>示例:     </p>
+
+<pre><code>let iv = "0000000000000000"
+    let encrypt = raw.aesCBCEncrypt(key,iv: iv)
+    print(encrypt!.hexString)
+    print(encrypt!.hexString.aesCBCDecryptFromHex(key,iv: iv))
+    print(encrypt!.base64String)
+    print(encrypt!.base64String.aesCBCDecryptFromBase64(key,iv: iv))</code></pre>
+<h3>RSA</h3>
+<p>** 只支持 <code>.der</code> 文件格式的公钥和 <code>.p12</code> 格式的私钥 (而 PHP/Java/Python 这些平台使用 pem 文件)；只支持 PKCS1Padding 的补齐；**</p>
+
+<p>使用 <code>OpenSSL</code> 生成各个证书的方法</p>
+
+<pre><code># 生成 RSA 私钥
+openssl genrsa  -out private.pem  2048
+
+# 从密钥中提取公钥
+openssl rsa  -pubout  -in private.pem  -out public.pem
+
+# 用私钥生成证书签名请求
+openssl req -new -key private.pem -out cert.csr
+
+# 用私钥和证书签名请求生成自签名的证书
+openssl x509 -req -days 3650 -in cert.csr -signkey private.pem -out cert.crt
+
+# 将自签名的证书转换为 DER 格式（里面包含公钥）
+openssl x509 -outform der -in cert.crt -out cert.der
+
+# 将私钥和证书导出到 p12 文件中（要求输入密码）
+openssl pkcs12 -export -inkey private.pem -in cert.crt -out cert.p12</code></pre>
+<h4>加密和解密</h4>
+<p>使用公钥进行加密</p>
+
+<ul>
+<li><code>public func encrypt(data:NSData) -> NSData?</code></li>
+</ul>
+
+<p>使用私钥进行解密 </p>
+
+<ul>
+<li><code>public func decrypt(data:NSData) -> NSData?</code></li>
+<li><code>public func decrypt(fromHexString hexString:String) -> NSData?</code></li>
+<li><code>public func decrypt(fromBase64String base64String:String) -> NSData?</code></li>
+</ul>
+
+<p>示例</p>
+
+<pre><code>let path_public = NSBundle.mainBundle().pathForResource("cert", ofType: "der")!
+    let path_private = NSBundle.mainBundle().pathForResource("cert", ofType: "p12")!
+    let raw = "0123456789abcdefg"
+    let raw_data = raw.dataUsingEncoding(NSUTF8StringEncoding)!
+    let rsa = RSA(filenameOfPulbicKey: path_public, filenameOfPrivateKey: path_private)
+    guard let _rsa = rsa else {
+        return
+    }
+    let encrypt_data = _rsa.encrypt(raw_data)
+    let base64_string = encrypt_data!.base64String
+    print(base64_string)
+    let old_data = _rsa.decrypt(fromBase64String: base64_string)
+    let old_string = String(data: old_data!, encoding: NSUTF8StringEncoding)
+    print("old_string:\(old_string)")</code></pre>
+<h3>签名和验证</h3>
+<p>支持签名时的摘要算法:</p>
+
+<ul>
+<li>MD2;</li>
+<li>MD5;</li>
+<li>SHA1;</li>
+<li>SHA224;</li>
+<li>SHA256;</li>
+<li>SHA384；</li>
+<li>SHA512；</li>
+</ul>
+
+<p>使用私钥签名方法:</p>
+
+<p><code>public func sign(algorithm:RSAAlgorithm,inputData:NSData) -> NSData?</code></p>
+
+<p>使用公钥的验证方法:</p>
+
+<p><code>public func verify(algorithm:RSAAlgorithm,inputData:NSData, signedData:NSData) -> Bool</code></p>
+
+<p>示例</p>
+
+<pre><code>let path_public = NSBundle.mainBundle().pathForResource("cert", ofType: "der")!
+            let path_private = NSBundle.mainBundle().pathForResource("cert", ofType: "p12")!
+
+    let rsa = RSA(filenameOfPulbicKey: path_public, filenameOfPrivateKey: path_private)
+    guard let _rsa = rsa else {
+        return
+    }
+
+    let raw = "0123456789abcdefg"
+    let raw_data = raw.dataUsingEncoding(NSUTF8StringEncoding)!
+    let sign_data = _rsa.sign(RSAAlgorithm.SHA1,inputData:raw_data)
+    //        print(sign_data!.hexString)
+    print(sign_data!.base64String)
+
+    let raw_test = "0123456789abcdefg"
+    let raw_test_data = raw_test.dataUsingEncoding(NSUTF8StringEncoding)!
+    let verified = _rsa.verify(RSAAlgorithm.SHA1,inputData: raw_test_data, signedData: sign_data!)
+    print("\(verified)")</code></pre>
+<h2>扩展 NSData</h2>
+<ul>
+<li><code>hexString</code>: 输出 hex 字符串;</li>
+<li><code>base64String</code>: 输出 base64 字符串</li>
+<li><code>arrayOfBytes</code>: 输出 <code>[UInt8]</code> 数组;</li>
+</ul>
+
+<p>示例:</p>
+
+<pre><code>extension NSData {
+        public var hexString : String
+        public var base64String:String
+        public func arrayOfBytes() -&gt; [UInt8]
+    }</code></pre>
+<h2>扩展 String</h2>
+<ul>
+<li><code>dataFromHexadecimalString</code>: 从 hex 字符串转换到 NSData;</li>
+</ul>
+
+<p>示例: </p>
+
+<pre><code>extenstion String {
+        func dataFromHexadecimalString() -&gt; NSData?
+    }</code></pre>
+<h2>测试</h2>
+<ul>
+<li>如何在 Python 中验证和 SecrecySwift 相同功能的示例 <a href="https://github.com/adow/SecrecySwift/blob/master/SecrecTestPy/test.py" title="">SecrecyTestPy/test.py</a></li>
+</ul>
+<h2>References</h2>
+<ul>
+<li><a href="http://www.jianshu.com/p/98610bdc9bd6" title="">【加密解密】加密解密介绍</a></li>
+<li><a href="http://kvmisc.github.io/blog/2015/02/10/implement-aes-and-rsa-algorithm-in-ios/" title="">iOS 系统中 AES 和 RSA 算法的实现</a></li>
+<li><a href="https://github.com/adow/SecrecySwift/blob/master/SecrecySwift/AES.swift" title="">AES.swift</a></li>
+<li><a href="http://kvmisc.github.io/blog/2015/02/10/implement-aes-and-rsa-algorithm-in-ios/" title="">iOS 系统中 AES 和 RSA 算法的实现</a></li>
+<li><a href="http://blog.cnbluebox.com/blog/2014/03/19/rsajia-mi/" title="">RSA加密</a></li>
+<li><a href="https://github.com/adow/SecrecySwift/blob/master/SecrecySwift/RSA.swift" title="">RSA.swift</a></li>
+</ul>
+
+      </div>
+      <div class = 'article-author'>
+        <div class = 'article-author-avatar'>
+          
+          <a href=''><img src='http://wx.qlogo.cn/mmopen/X3L5jTrqCsk1Hh0fy668qI9yAH3O11dSzzXzHicBNoGKqYvAKGwZicnMQicOwyeuCyibYjFHvJfXw9Njb7JC9gwF7saPkLb5epUK/0'/></a> 
+          
+        </div>   
+        <p class = 'm-t-30'>
+          adow 
+        </p>
+        
+        <p>
+          iOS 开发者, 有时写点 Python
+        </p>
+        
+        <div class = 'clearfix'></div>
+        <div class = 'article-author-social'>
+          <ul>
+            
+            <li><a href = 'https://weibo.com/adow'><img src = '/_themes/default/images/sina-weibo.png'/></a></li> 
+            
+            
+            <li><a href = 'https://github.com/adow'><img src = '/_themes/default/images/github.png'/></a></li> 
+            
+            
+            
+            <li><a href = 'https://twitter.com/reynoldqin'><img src = '/_themes/default/images/twitter.png'/></a></li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="article-navigation">
+        <ul>
+          
+          
+          <li class = 'previous'>下一篇: <a href = 'about.html'>关于我</a></li> 
+          
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+      <!-- JiaThis Button BEGIN -->
+      <div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+      <a class="jiathis_button_tsina"></a>
+      <a class="jiathis_button_twitter"></a>
+      <a class="jiathis_button_weixin"></a>
+      <a class="jiathis_button_pocket"></a>
+      </div>
+      <script type="text/javascript" >
+      var title = 'SecrecySwift';
+      
+      title += ' - ' + 'AES/CBC/EBC/RSA in Swift';
+      
+      var jiathis_config={
+        summary:"",
+        shortUrl:false,
+        hideMore:true,
+        title:title,
+        url:'http://codingnext.com/secrecy-swift.html'
+      }
+      </script>
+      <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+      <!-- JiaThis Button END -->
+      <div class="clearfix"></div>
+      
+      <div id="disqus_thread"></div>
+      <script>
+      /**
+      * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+      */
+      var disqus_config = function () {
+        this.page.url = 'http://codingnext.com/secrecy-swift.html'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'secrecy-swift.html' // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+
+      s.src = '//adowblog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+       
+      
+      <div class = 'footer'>
+        Powered by MING 
+      </div>
+    </div>
+  </div>
+</body>
+<script type = 'text/javascript'>
+window.onscroll = function(){
+  var document_top = document.documentElement.scrollTop;
+  var body_top = document.body.scrollTop;
+  //console.log(document_top.toString() + ',' + body_top.toString());
+  var site_nav = $('#site-nav');
+  if (body_top >= 100.0) {
+    site_nav.css('visibility','hidden');
+  }
+  else {
+    site_nav.css('visibility','visible');
+  }
+};
+
+$(document).ready(function(){
+
+  $('.site-menu').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','block');
+      });
+  $('.site-links-mobile-close').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','none');
+      });
+  /// resize images when resize window
+  $(window).resize(function(){
+      var screen_width = $(window).width() 
+      //console.log(screen_width);
+      var img_list = $('#article-content p img');
+      img_list = [].slice.call(img_list);
+      for (var a in img_list) {
+        var img_dom = img_list[a];
+        var img = $(img_dom);
+        resize_img(img); 
+      }
+      });
+
+  /// resize images when loaded
+  var img_list = $('#article-content p img');
+  img_list = [].slice.call(img_list);
+  for (var a in img_list) {
+    var img_dom = img_list[a];
+    var img = $(img_dom);
+    img.load(function(){
+        resize_img($(this)); 
+
+    });
+  }
+});
+
+
+
+
+function resize_img(img){
+  var screen_width = $(window).width();
+  var p = img.parent();
+  var natural_width = img[0].naturalWidth;
+  if (screen_width < natural_width ){
+    var p_width = p.width();
+    var padding = (screen_width - p_width) / 2.0;
+    img.css('width',screen_width)
+      .css('max-width','none')
+      .css('margin-left', -1.0 * padding)
+      .css('margin-right',-1.0 * padding)
+      ;
+    img.parent().css('max-width','none');
+  }
+  else {
+    img.css('max-width','100%')
+      .css('margin-left','auto')
+      .css('margin-right','auto');
+    var p_max = screen_width > 768.0 ? '800.0' :'768.0';
+    img.parent().css('max-width',p_max);
+  }
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79374744-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>
