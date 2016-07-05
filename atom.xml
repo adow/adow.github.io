@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2016-06-15T07:51:26.111993+00:00</updated>
+  <updated>2016-07-05T14:53:04.768334+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2016-06-15T07:51:26.112204+00:00</updated>
+    <updated>2016-07-05T14:53:04.768562+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -369,7 +369,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2016-06-15T07:51:26.114303+00:00</updated>
+    <updated>2016-07-05T14:53:04.770735+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -430,7 +430,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2016-06-15T07:51:26.114896+00:00</updated>
+    <updated>2016-07-05T14:53:04.771377+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -732,7 +732,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2016-06-15T07:51:26.116820+00:00</updated>
+    <updated>2016-07-05T14:53:04.773363+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -761,7 +761,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2016-06-15T07:51:26.117173+00:00</updated>
+    <updated>2016-07-05T14:53:04.774269+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -802,7 +802,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2016-06-15T07:51:26.117726+00:00</updated>
+    <updated>2016-07-05T14:53:04.774939+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -932,7 +932,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2016-06-15T07:51:26.118522+00:00</updated>
+    <updated>2016-07-05T14:53:04.775768+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1038,7 +1038,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2016-06-15T07:51:26.119225+00:00</updated>
+    <updated>2016-07-05T14:53:04.776479+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1062,7 +1062,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2016-06-15T07:51:26.119452+00:00</updated>
+    <updated>2016-07-05T14:53:04.776733+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
