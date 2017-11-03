@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2017-11-03T15:05:23.182666+00:00</updated>
+  <updated>2017-11-03T15:21:06.344002+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 还是被收了起来</title>
-    <updated>2017-11-03T15:05:23.182878+00:00</updated>
+    <updated>2017-11-03T15:21:06.344321+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -26,7 +26,7 @@
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2017-11-03T15:05:23.183148+00:00</updated>
+    <updated>2017-11-03T15:21:06.344699+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -386,7 +386,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2017-11-03T15:05:23.185208+00:00</updated>
+    <updated>2017-11-03T15:21:06.347704+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -447,7 +447,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2017-11-03T15:05:23.185794+00:00</updated>
+    <updated>2017-11-03T15:21:06.348340+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -749,7 +749,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2017-11-03T15:05:23.187766+00:00</updated>
+    <updated>2017-11-03T15:21:06.350486+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -778,7 +778,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2017-11-03T15:05:23.188132+00:00</updated>
+    <updated>2017-11-03T15:21:06.350873+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -819,7 +819,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2017-11-03T15:05:23.188715+00:00</updated>
+    <updated>2017-11-03T15:21:06.351470+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -949,7 +949,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2017-11-03T15:05:23.189511+00:00</updated>
+    <updated>2017-11-03T15:21:06.352322+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1055,22 +1055,22 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2017-11-03T15:05:23.190211+00:00</updated>
+    <updated>2017-11-03T15:21:06.353050+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
     </author>
-    <content type="html">&lt;p&gt;我是秦道平，网络上喜欢叫自己 adow,  一名程序开发者，现在生活在无锡。&lt;/p&gt;
+    <content type="html">&lt;p&gt;我是 adow,  一名程序开发者，现在生活在无锡。&lt;/p&gt;
 
 &lt;p&gt;现在，大部分时间我都在开发 iOS App, 从 2015 年开始，我已经将开发语言切换到 Swift，并应用在之后的所有项目中。在其他时候，我也使用 Python 写一些小程序，比如这个博客的程序 &lt;code&gt;ming.py&lt;/code&gt;。&lt;/p&gt;
 
 &lt;p&gt;以下是我在一些社交网络中的链接:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/adow" title=""&gt;github.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://weibo.com/adow" title=""&gt;微博&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://twitter.com/reynoldqin" title=""&gt;twitter.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://v2ex.com/member/adow" title=""&gt;v2ex.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="[PROJECT]	https://github.com/adow" title=""&gt;github.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="[PROJECT]	https://weibo.com/adow" title=""&gt;微博&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="[PROJECT]	https://twitter.com/reynoldqin" title=""&gt;twitter.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="[PROJECT]	https://v2ex.com/member/adow" title=""&gt;v2ex.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
     <link href="http://codingnext.com/about.html" rel="alternate"/>
@@ -1079,7 +1079,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2017-11-03T15:05:23.190466+00:00</updated>
+    <updated>2017-11-03T15:21:06.353320+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
