@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2017-11-07T02:49:23.310069+00:00</updated>
+  <updated>2017-11-07T02:57:06.996435+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2017-11-07T02:49:23.310284+00:00</updated>
+    <updated>2017-11-07T02:57:06.996714+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -26,7 +26,7 @@
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2017-11-07T02:49:23.310557+00:00</updated>
+    <updated>2017-11-07T02:57:06.996989+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -386,7 +386,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2017-11-07T02:49:23.312634+00:00</updated>
+    <updated>2017-11-07T02:57:06.999097+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -447,7 +447,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2017-11-07T02:49:23.313206+00:00</updated>
+    <updated>2017-11-07T02:57:06.999729+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -749,7 +749,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2017-11-07T02:49:23.315109+00:00</updated>
+    <updated>2017-11-07T02:57:07.001671+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -778,7 +778,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2017-11-07T02:49:23.315487+00:00</updated>
+    <updated>2017-11-07T02:57:07.002043+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -819,7 +819,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2017-11-07T02:49:23.316085+00:00</updated>
+    <updated>2017-11-07T02:57:07.002627+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -949,7 +949,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2017-11-07T02:49:23.316888+00:00</updated>
+    <updated>2017-11-07T02:57:07.003431+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1055,7 +1055,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2017-11-07T02:49:23.317594+00:00</updated>
+    <updated>2017-11-07T02:57:07.004201+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1078,7 +1078,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2017-11-07T02:49:23.317844+00:00</updated>
+    <updated>2017-11-07T02:57:07.004461+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>

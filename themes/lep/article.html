@@ -5,7 +5,7 @@
   <meta name="google-site-verification" content="vTaWd72F_kJY6mNbfoCQuutuGdH1kSsg7o3F31b3wgg" />
   <meta name="baidu-site-verification" content="6rfk66K9Nk" />
   {% if article.article_title %}  
-  <title>lep {{ article.article_title }}</title>
+  <title>{{ article.article_title }}</title>
   {% else %}
   <title>{{ article.site_title }}</title>
   {% endif %}
@@ -50,6 +50,7 @@
       <div id = 'article-content'>
         {{ article._content_html }}
       </div>
+      <div class="clearfix"></div>
       <div id="article-share">
         <!-- JiaThis Button BEGIN -->
         <div class="jiathis_style_24x24"><span class="jiathis_txt">分享到：</span>
@@ -74,6 +75,7 @@
         <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
         <!-- JiaThis Button END -->
       </div>
+      <div class="clearfix"></div>
       <div id = 'article-nav'>
         {% if article._next_article %}
         <h1 class = 'mark'>上一篇</h1> 
