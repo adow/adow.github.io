@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2017-11-03T15:53:40.556470+00:00</updated>
+  <updated>2017-11-07T02:49:23.310069+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
     <id>20171103-ps4-in-box.html</id>
-    <title>20171103 PS4 还是被收起来了</title>
-    <updated>2017-11-03T15:53:40.556682+00:00</updated>
+    <title>20171103 PS4 最终还是被收起来了</title>
+    <updated>2017-11-07T02:49:23.310284+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -21,12 +21,12 @@
 &lt;p&gt;入手主机的初衷是想玩几款白金大作。 MGS5 玩到第八章就玩不下去了，动作类游戏对我的操作要求太高了。即使这样，我还是没有吸取教训，又买了神海4，结果连第二章都只玩了一个开头。我最期待的 FF15 买了国行版，虽然评价一般，但是我玩起来还是很喜欢，只是一直停留在第五章。现在他们都和主机一起被收起来了，在我的一些工作完成之前，我都不想再打开他们。&lt;/p&gt;
 </content>
     <link href="http://codingnext.com/20171103-ps4-in-box.html" rel="alternate"/>
-    <published>2017-11-03T00:00:00+08:00</published>
+    <published>2017-11-07T00:00:00+08:00</published>
   </entry>
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2017-11-03T15:53:40.556953+00:00</updated>
+    <updated>2017-11-07T02:49:23.310557+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -386,7 +386,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2017-11-03T15:53:40.559027+00:00</updated>
+    <updated>2017-11-07T02:49:23.312634+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -447,7 +447,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2017-11-03T15:53:40.559619+00:00</updated>
+    <updated>2017-11-07T02:49:23.313206+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -749,7 +749,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2017-11-03T15:53:40.561649+00:00</updated>
+    <updated>2017-11-07T02:49:23.315109+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -778,7 +778,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2017-11-03T15:53:40.562097+00:00</updated>
+    <updated>2017-11-07T02:49:23.315487+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -819,7 +819,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2017-11-03T15:53:40.562786+00:00</updated>
+    <updated>2017-11-07T02:49:23.316085+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -949,7 +949,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2017-11-03T15:53:40.563701+00:00</updated>
+    <updated>2017-11-07T02:49:23.316888+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1055,7 +1055,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2017-11-03T15:53:40.564561+00:00</updated>
+    <updated>2017-11-07T02:49:23.317594+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1078,7 +1078,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2017-11-03T15:53:40.564830+00:00</updated>
+    <updated>2017-11-07T02:49:23.317844+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
