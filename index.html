@@ -5,7 +5,7 @@
   <meta name="google-site-verification" content="vTaWd72F_kJY6mNbfoCQuutuGdH1kSsg7o3F31b3wgg" />
   <meta name="baidu-site-verification" content="6rfk66K9Nk" />
     
-  <title>20171103 PS4 最终还是被收起来了</title>
+  <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
   
   <meta name="author" content="adow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,7 @@
     
     
     #article-cover {
-      background-image:url('http://7vihfk.com1.z0.glb.clouddn.com/photo-1507457379470-08b800bebc67.jpeg');
+      background-image:url('http://7vihfk.com1.z0.glb.clouddn.com/tyler.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -35,20 +35,38 @@
     <div class ='clearfix'></div>
     <div id="article">
       <div id="article-meta">
-        <time>2017-11-07 </time> <span class='article-category-author'>/ 流水帐 by adow</span>  
+        <time>2017-11-10 </time> <span class='article-category-author'>/ 随手记 by adow</span>  
       </div>
       <h1 id="article-title">
-        20171103 PS4 最终还是被收起来了 
+        20171110 一整天都在和 YouCompleteMe 较劲 
       </h1>
       <h2 id = 'article-subtitle'>
-        没有打通任何一款游戏 
+        有的时候时间不是被玩掉的 
       </h2>
       <div id = 'article-content'>
-        <p>今天把 PS4 收起来了，因为一段时间内是没有时间去玩他了。不管是把他放在电视柜上，还是在办公桌上，大部分时间也就是在积灰而已。本来计划每个周末至少有一个晚上来玩游戏，但是实际上很少能做到。有时是因为这周的计划没有完成，所以占用了游戏的时间，有时就是因为懒而已，不想再耗费精力玩游戏。</p>
+        <p>今天本来要写一个 web 服务用来测试订单应用开发。因为要能够被外部访问，我就准备直接在服务器 (一台干净的 GCE 的服务器 CentOS) 上用 Python 写一个简单的应用服务。然后所做的事情经历了如下的步骤：</p>
 
-<p>在这个主机上我玩的最多的是 PES2016，我每次只使用一个队踢几场热身赛，很少去踢欧冠，其他模式是根本连看都没看过。所以新版的 PES 2018 只是下载了一个试玩版就足够了，唯一的不足在于里面没有 Arsenal，所以我只能使用利物浦随便踢的玩玩。</p>
+<ul>
+<li><code>vim test.py</code> 写了一个简单的 <code>torando</code> 应用（输出请求内容），<code>python test.py</code> 后外面访问正常。</li>
+<li>开始处理对接应用 url 回调的处理，修改 <code>test.py</code>, 发现缩进行为不对，按下 <code>tab</code> 居然不是输出4个空格。因为服务器上的 <code>vim</code> 没有任何的配置。</li>
+<li>从我的 <code>vim</code> 配置仓库, <code>clone</code>， 然后连接到 <code>.vimrc</code> 文件；</li>
+<li>安装 <code>vundle</code>；</li>
+<li>在 <code>vim</code> 中使用 <code>vundle</code> 安装插件, <code>PluginInstall</code>，提示 <code>LeaderF</code> 和 <code>YouCompleteMe</code> 需要更高版本的 <code>vim</code>；</li>
+<li>删除系统内 <code>vim</code>, 直接编译安装 <code>vim 8</code>;</li>
+<li>编译安装 <code>YouCompleteMe</code>, 出现错误</li>
+</ul>
 
-<p>入手主机的初衷是想玩几款白金大作。 MGS5 玩到第八章就玩不下去了，动作类游戏对我的操作要求太高了。即使这样，我还是没有吸取教训，又买了神海4，结果连第二章都只玩了一个开头。我最期待的 FF15 买了国行版，虽然评价一般，但是我玩起来还是很喜欢，只是一直停留在第五章。现在他们都和主机一起被收起来了，在我的一些工作完成之前，我都不想再打开他们。</p>
+<p>不管是运行 <code>./install.py --clang-completer</code>,还是编译 <code>ycm_core</code>, 都是出现一样的编译错误：</p>
+
+<pre><code>gmake[3]: *** [BoostParts/CMakeFiles/BoostParts.dir/libs/python/src/dict.cpp.o] 错误 4
+gmake[2]: *** [BoostParts/CMakeFiles/BoostParts.dir/all] 错误 2
+gmake[1]: *** [ycm/CMakeFiles/ycm_core.dir/rule] 错误 2
+gmake: *** [ycm_core] 错误 2
+ERROR: the build failed.</code></pre>
+
+<p>查看了 <code>YouCompleteMe</code> 的完整安装文档，把所有的工具升级到最新版，还装了 <code>Python3</code>。还是这个问题，暂时放弃了，不知道是不是 <code>CentOS 7</code> 或者 <code>vim8</code> 的问题。我只是想写个 <code>Python</code>，先用 <code>OmmiComplete</code>吧。</p>
+
+<p>所以，代码还没有开始写，一天过去了。</p>
 
       </div>
       <div class="clearfix"></div>
@@ -61,16 +79,16 @@
         <a class="jiathis_button_pocket"></a>
         </div>
         <script type="text/javascript" >
-        var title = '20171103 PS4 最终还是被收起来了';
+        var title = '20171110 一整天都在和 YouCompleteMe 较劲';
         
-        title += ' - ' + '没有打通任何一款游戏';
+        title += ' - ' + '有的时候时间不是被玩掉的';
         
         var jiathis_config={
           summary:"",
           shortUrl:false,
           hideMore:true,
           title:title,
-          url:'http://codingnext.com/20171103-ps4-in-box.html'
+          url:'http://codingnext.com/20171110-youcompleteme.html'
         }
         </script>
         <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
@@ -80,9 +98,9 @@
       <div id = 'article-nav'>
         
         <h1 class = 'mark'>上一篇</h1> 
-        <h1><a href = 'you-forget-nsurlcache.html'> 被忽视的 NSURLCache</a></h1>
+        <h1><a href = '20171103-ps4-in-box.html'> 20171103 PS4 最终还是被收起来了</a></h1>
         
-        <h2>实现一个网络图片下载工具 AWebImage</h2>
+        <h2>没有打通任何一款游戏</h2>
         
         <p></p>
         
@@ -99,8 +117,8 @@
         * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
         */
         var disqus_config = function () {
-          this.page.url = 'http://codingnext.com/20171103-ps4-in-box.html'; // Replace PAGE_URL with your page's canonical URL variable
-          this.page.identifier = '20171103-ps4-in-box.html' // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          this.page.url = 'http://codingnext.com/20171110-youcompleteme.html'; // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = '20171110-youcompleteme.html' // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() { // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');
