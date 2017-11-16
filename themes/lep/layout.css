@@ -124,7 +124,7 @@ h3 {
   -webkit-font-smoothing: antialiased;
   text-rendering:optimizeLegibility;
 }
-#article #article-content p,#article #article-content pre,#article #article-content ul li {
+#article #article-content ul li {
   margin-left: 18px;
   margin-right: 18px;
 }
