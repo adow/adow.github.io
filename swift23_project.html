@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="vTaWd72F_kJY6mNbfoCQuutuGdH1kSsg7o3F31b3wgg" />
+  <meta name="baidu-site-verification" content="6rfk66K9Nk" />
+    
+  <title>一次 Swift2.3 项目的维护经历</title>
+  
+  <meta name="author" content="adow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/themes/lep/vendor/normalize.css">
+  <script src = "/themes/lep/vendor/jquery.min.js"></script>
+  <link rel="stylesheet" href="/themes/lep/layout.css">
+  <link rel="alternate" type="application/rss+xml" title="CodingNEXT" href="http://codingnext.com/atom.xml">
+  <style type="text/css">
+    
+    
+    #article-cover {
+      background-image:url('http://7vihfk.com1.z0.glb.clouddn.com/jack-anstey-415825.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="layout-container">
+    <div id = 'article-cover'>
+      <div id = 'site-name'>
+        <a href = 'index.html'>CodingNEXT</a></span>
+      </div>
+    </div>
+    <div class ='clearfix'></div>
+    <div id="article">
+      <div id="article-meta">
+        <time>2017-11-20 </time> <span class='article-category-author'>/ devlog by adow</span>  
+      </div>
+      <h1 id="article-title">
+        一次 Swift2.3 项目的维护经历 
+      </h1>
+      <h2 id = 'article-subtitle'>
+         
+      </h2>
+      <div id = 'article-content'>
+        <p>起源于 <code>Swift2.3</code> 的老项目，本来已经说好不维护了，也不修改代码了。但是他使用的是企业证书发布的，而企业证书的有效期是一年，到期之后，即使是已经安装的 App 也无法打开。所以我只能用新的证书重新编译再打包一个。</p>
+
+<p>但是我电脑上只有 <code>Xcode 9.1</code>，无法直接自动转换 <code>Swift 2.3</code> 的项目，必须要使用 <code>Xcode 8.3</code> 来转换到 <code>Swift 3</code>，然后再更新到最新的 <code>Swift 4</code>。虽然这样很折腾，但是我想想 Xcode 的转换工具能完成大部分工作，我应该也就个把小时的工作量吧。实时证明我太天真了，转换之后还是有大量需要手工重写的代码。除了自己的之外，还有很多第三方库也适应到新的写法导致了很多地方的方法调用都得重写。</p>
+
+<p>在折腾了半天之后，我还是放弃了，准备直接使用老版本的 <code>Xcode</code> (8.3 以前的版本），来编译。但是再安装 <code>Xcode 8.2.1</code> 的时候又出现了验证失败的问题，<code>Xcode 8.2</code> 同样有这个问题。通过 </p>
+
+<pre><code>pkgutil --check-signature Xcode8.2.1.xip</code></pre>
+
+<p>验证签名都是不匹配的，无法理解为什么在 Apple Developer 下载的 Xcode 居然会无法完成验证。 </p>
+
+<p>然后又想通过</p>
+
+<pre><code>xattr -d com.apple.quarantine Xcode8.2.1.xip</code></pre>
+
+<p>去掉签名后再打开，仍然是显示验证失败。</p>
+
+<p>最后只能安装了 <code>Xcode 8.1</code> （幸好这个是可以正确的安装的）。然后更新证书，编译打包都顺利完成了。</p>
+
+<p>—</p>
+
+<p>我想说的是 <code>Swift 2.3</code> 只是我在一年多前还在使用着的语言，如果这个项目没有更新 <code>Xcode</code> 和 <code>Swift</code> 进化的话，那在有一天突然要更新到最新版实在是一件太可怕的工作。</p>
+
+<p>对于开发者来说，我们总是被先进的编程语言，编程框架所吸引，一直以来我都是在自己当时的项目中尽可能使用新的东西，这也是完成工作的一种动力。但是最近几年，你会发现在技术圈中（不只是 Swift, Javascript 也是），每天都会有新的东西出现。而我们程序员又如此爱折腾，真的无法拒绝这些诱惑。即使到现在我也无法克制对新技术的盲目推崇。但是看看这次的经历，一个不算很久不维护的项目就已经进入难以更新的境地，我以后不得不提醒自己，在为这个项目选择工具的时候，他真的能为后面的工作带来便利吗？</p>
+
+<p>有的时候我真怀念写 c 或者 python 的瞬间，只要一个 vim 编辑器，在任意一台 MacOS, Linux 上就可以快乐的写程序。野心勃勃而又越来越庞大的 Swift，不知道什么时候才能有这一天呢。</p>
+
+      </div>
+      <div class="clearfix"></div>
+      <div id="article-share">
+        <!-- JiaThis Button BEGIN -->
+        <div class="jiathis_style_24x24"><span class="jiathis_txt">分享到：</span>
+        <a class="jiathis_button_tsina"></a>
+        <a class="jiathis_button_twitter"></a>
+        <a class="jiathis_button_weixin"></a>
+        <a class="jiathis_button_pocket"></a>
+        </div>
+        <script type="text/javascript" >
+        var title = '一次 Swift2.3 项目的维护经历';
+        
+        var jiathis_config={
+          summary:"",
+          shortUrl:false,
+          hideMore:true,
+          title:title,
+          url:'http://codingnext.com/swift23_project.html'
+        }
+        </script>
+        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+        <!-- JiaThis Button END -->
+      </div>
+      <div class="clearfix"></div>
+      <div id = 'article-nav'>
+        
+        <h1 class = 'mark'>上一篇</h1> 
+        <h1><a href = '20171110-youcompleteme.html'> 20171110 一整天都在和 YouCompleteMe 较劲</a></h1>
+        
+        <h2>有的时候时间不是被玩掉的</h2>
+        
+        <p></p>
+        
+        
+        <h1 class = 'mark'><a href = 'archive.html'>阅读更多文章</a></h1>
+      </div>
+      <div class="clearfix"></div>
+      
+      <div id = 'article-feedback'>
+        <div id="disqus_thread"></div>
+        <script>
+        /**
+        * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        var disqus_config = function () {
+          this.page.url = 'http://codingnext.com/swift23_project.html'; // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = 'swift23_project.html' // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//adowblog.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      </div>
+      
+      <div class="clearfix"></div>
+      <div class = 'footer'>
+        <span class='powered'>Powered by MING</span>
+        <span class = 'links'><a href = 'archive.html'>Archive</a> <a href ='about.html'>关于</a></span>
+      </div>
+    </div>
+  </div>
+</body>
+<script type = 'text/javascript'>
+window.onscroll = function(){
+  var document_top = document.documentElement.scrollTop;
+  var body_top = document.body.scrollTop;
+  //console.log(document_top.toString() + ',' + body_top.toString());
+  var site_nav = $('#site-nav');
+  if (body_top >= 100.0) {
+    site_nav.css('visibility','hidden');
+  }
+  else {
+    site_nav.css('visibility','visible');
+  }
+};
+
+$(document).ready(function(){
+  $('.site-menu').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','block');
+      });
+  $('.site-links-mobile-close').click(function(){
+      var site_links_mobile = $('#site-links-mobile');
+      site_links_mobile.css('display','none');
+      });
+  /// resize images when resize window
+  $(window).resize(function(){
+      var screen_width = $(window).width() 
+      //console.log(screen_width);
+      var img_list = $('#article-content p img');
+      img_list = [].slice.call(img_list);
+      for (var a in img_list) {
+        var img_dom = img_list[a];
+        var img = $(img_dom);
+        resize_img(img); 
+      }
+      });
+
+  /// resize images when loaded
+  var img_list = $('#article-content p img');
+  img_list = [].slice.call(img_list);
+  for (var a in img_list) {
+    var img_dom = img_list[a];
+    var img = $(img_dom);
+    img.load(function(){
+        resize_img($(this)); 
+
+    });
+  }
+});
+
+
+
+
+function resize_img(img){
+  var screen_width = $(window).width();
+  var p = img.parent();
+  var natural_width = img[0].naturalWidth;
+  if (screen_width < natural_width ){
+    var p_width = p.width();
+    var padding = (screen_width - p_width) / 2.0;
+    img.css('width',screen_width)
+      .css('max-width','none')
+      .css('margin-left', -1.0 * padding)
+      .css('margin-right',-1.0 * padding)
+      ;
+    img.parent().css('max-width','none');
+  }
+  else {
+    img.css('max-width','100%')
+      .css('margin-left','auto')
+      .css('margin-right','auto');
+    var p_max = screen_width > 768.0 ? '800.0' :'768.0';
+    img.parent().css('max-width',p_max);
+  }
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79374744-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>
