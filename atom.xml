@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2017-12-24T15:11:15.750910+00:00</updated>
+  <updated>2018-01-08T15:17:07.853921+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2017-12-24T15:11:15.751171+00:00</updated>
+    <updated>2018-01-08T15:17:07.854333+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -31,12 +31,12 @@
 &lt;p&gt;总体而言，我觉得现在使用 javascript 作为开发工具已经具备非常好的条件。有很多成熟的工具来改进开发体验，甚至觉得现在前端届出来的太多库和框架，让选择变的太困难了。javascript 这么糟糕的语言经过这么多年无数前端程序员无尽的踩坑之后，终于变成了一个靠谱的工具了。&lt;/p&gt;
 </content>
     <link href="http://codingnext.com/using-javascript.html" rel="alternate"/>
-    <published>2017-12-24T00:00:00+08:00</published>
+    <published>2018-01-08T00:00:00+08:00</published>
   </entry>
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2017-12-24T15:11:15.751552+00:00</updated>
+    <updated>2018-01-08T15:17:07.854842+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -73,7 +73,7 @@
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2017-12-24T15:11:15.751924+00:00</updated>
+    <updated>2018-01-08T15:17:07.855278+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -108,7 +108,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2017-12-24T15:11:15.752313+00:00</updated>
+    <updated>2018-01-08T15:17:07.855728+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -125,7 +125,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2017-12-24T15:11:15.752541+00:00</updated>
+    <updated>2018-01-08T15:17:07.855998+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -485,7 +485,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2017-12-24T15:11:15.754807+00:00</updated>
+    <updated>2018-01-08T15:17:07.858249+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -546,7 +546,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2017-12-24T15:11:15.755446+00:00</updated>
+    <updated>2018-01-08T15:17:07.858998+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -848,7 +848,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2017-12-24T15:11:15.757718+00:00</updated>
+    <updated>2018-01-08T15:17:07.861137+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -877,7 +877,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2017-12-24T15:11:15.758156+00:00</updated>
+    <updated>2018-01-08T15:17:07.861519+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -918,7 +918,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2017-12-24T15:11:15.758780+00:00</updated>
+    <updated>2018-01-08T15:17:07.862117+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1048,7 +1048,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2017-12-24T15:11:15.759639+00:00</updated>
+    <updated>2018-01-08T15:17:07.862940+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1154,7 +1154,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2017-12-24T15:11:15.760384+00:00</updated>
+    <updated>2018-01-08T15:17:07.863668+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1177,7 +1177,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2017-12-24T15:11:15.760657+00:00</updated>
+    <updated>2018-01-08T15:17:07.864172+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
