@@ -2,14 +2,53 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2018-02-24T14:44:26.068369+00:00</updated>
+  <updated>2018-04-07T15:25:44.133224+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>taskjs.html</id>
+    <title>通过 Airtable 将树莓派编程一个下载机</title>
+    <updated>2018-04-07T15:25:44.133573+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;一直以来我都想把盒子里面的树莓派拿出来用用，但是之前每次拿出来之后，看了下他简陋的样子，就想不起来有什么有趣的玩法。装几个传感器或者弄个物联网网关什么的好像没啥意思啊。&lt;/p&gt;
+
+&lt;p&gt;最近发现看个剧太麻烦，虽然现在我已经很难得看部电视剧或者电影了，但是各大视频平台上面找剧却越来越难了，我有时就想下载下来有空在盒子上面看看吧。但我真没想像我周围的伪技术宅们那样弄个群辉放家里就了事。当然我并不是讨厌 NAS，他们会告诉你有一堆 NB 的插件可用。唯一的原因是，我家里还有一个用了好多年的 Apple TimeCapsule。作为路由器，他的信号稳定，自带 2T 的硬盘可用来做 TimeMachine，盒子可以通过 &lt;code&gt;afp&lt;/code&gt; 协议播放里面的视频，好歹也是水果家的产品，放着不用也可惜。&lt;/p&gt;
+
+&lt;p&gt;既然这样，我就岂不是只要一个下载器就好了。记住，当你听到有一个程序员说我只要做一个什么就好了的时候，你就要明白这家伙又要开始挖坑了。下面是我开始折腾的步骤：&lt;/p&gt;
+&lt;h2&gt;第一步，安装下载工具&lt;/h2&gt;
+&lt;p&gt;在树莓派 Raspberry 里面安装 &lt;a href="https://github.com/aria2/aria2" title=""&gt;aria2&lt;/a&gt; 这个下载工具，还顺便装了 &lt;a href="https://rg3.github.io/youtube-dl/" title=""&gt;youtube-dl&lt;/a&gt; 用来下载各大视频网站的内容。&lt;code&gt;aria2&lt;/code&gt; 除了可以进行传统的 http 下载外，还可以配合百度盘插件来下载（顺便说一句，他可以突破百度盘的下载限速，但我用的时候从来没满速过，只是比限速要快）。此外他还有众多 &lt;code&gt;web&lt;/code&gt; 界面可供选择，所以其实我只要通过 web 界面就可以给他指定下载任务了。但是由于在外面的时候就得涉及到穿透内网的需求了，而我好像对此并不是那么强烈，所以我还是只用了最传统的 &lt;code&gt;aria2c&lt;/code&gt; 命令行的方式进行下载。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;aria2&lt;/code&gt; 虽然可以下载 &lt;code&gt;BT&lt;/code&gt; 和磁力链协议，但是我在网速搜了一圈也没在自己机器上用起来，所以我现在的下载方法是先将他们用百度盘离线下载，然后再从百度盘下载。**如果你有办法用 BT 和磁力链请一定要告诉我**&lt;/p&gt;
+&lt;h2&gt;第二步，把树莓派连上时光胶囊&lt;/h2&gt;
+&lt;p&gt;这本来是很简单的一步，但是我当时可是搜索了好长时间才找到了可用的办法。&lt;/p&gt;
+&lt;h2&gt;第三步，编写下载任务脚本&lt;/h2&gt;
+&lt;p&gt;我需要告诉 &lt;a href="https://github.com/aria2/aria2" title=""&gt;aria2&lt;/a&gt;, &lt;a href="https://rg3.github.io/youtube-dl/" title=""&gt;youtube-dl&lt;/a&gt; 下载哪些内容。这样我就需要一个任务队列。刚开始我是准备通过邮件来实现的：比如我在树莓派上面用 &lt;code&gt;Python&lt;/code&gt; 写一个邮件接收的客户端，定时去取我指定的一个邮箱。当我要下载时，我就把整个 &lt;code&gt;aria2c&lt;/code&gt; 或者 &lt;code&gt;youtube-dl&lt;/code&gt; 命令发到我的那个邮箱中。当完成下载之后，他还可以通过邮件告诉我已经完成了。当然聪明的你肯定已经想到了这其实就是一个聊天系统，那通过接入微信，telegram 这样的聊天平台就更方便了。你想的一点都没错。不过我还想偷个懒，因为在我开始写代码之前发现了 &lt;code&gt;airtable.com&lt;/code&gt;。他就是一个在线的 &lt;code&gt;excel&lt;/code&gt;，好处是，他开放了 &lt;code&gt;resetful api&lt;/code&gt; 供外部操作这个表。所以我在上面建了一个任务列表。然后树莓派上用 node 运行了一个简单的脚本程序，每隔几秒钟去刷新一下任务，然后运行这个任务的命令，完成之后把这个任务的终端输出更新到任务表的状态中去，就算完成了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/baidupan-2.jpg" alt="img"&gt;&lt;/p&gt;
+
+&lt;p&gt;这里我不得不表扬一下 &lt;code&gt;airtable.com&lt;/code&gt;, 他的在线表格可以有各种表现形式。比如我可以将他转换为一个表单，这样我添加任务的时候就不要到表格里面去添加一行了，只要像在网站上填写资料时那样填写每一项就可以了。他甚至可以把表格变成一个 &lt;code&gt;看板&lt;/code&gt;,这对于做项目管理就非常有用了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/airtable-form-2.jpeg" alt="img"&gt;&lt;/p&gt;
+
+&lt;p&gt;说起这个任务列表，他们其实就是一个个 Linux 的命令行程序，所以我里面可以写一个 &lt;code&gt;ls -li&lt;/code&gt; 的命令来告诉我这个目录下的文件列表，也可以发起一个下载任务。然后你就会发现其实我还可以发起一个关机，或者格式化或者 &lt;code&gt;rm -rf /&lt;/code&gt; 这样的命令，想想都觉得恐怖对不对。所以你不要指望我告诉你我的这个任务列表在哪里。&lt;/p&gt;
+
+&lt;p&gt;这样做其实很简单对不对，只要有一点点编程的知识（我骗你的，一点点的编程知识肯定不够，因为只学一点点编程的人才不会去学 NodeJS）你就可以作出一个下载机。&lt;/p&gt;
+
+&lt;p&gt;这样，不管在外面还是在家中，你要下载的时候，只要打开任务列表的表单，然后填上下载命令就好了，科科。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/airtable-list-2.jpeg" alt="img"&gt;&lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/taskjs.html" rel="alternate"/>
+    <published>2018-04-07T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2018-02-24T14:44:26.068627+00:00</updated>
+    <updated>2018-04-07T15:25:44.134179+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -36,7 +75,7 @@
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2018-02-24T14:44:26.069018+00:00</updated>
+    <updated>2018-04-07T15:25:44.134518+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -73,7 +112,7 @@
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2018-02-24T14:44:26.069390+00:00</updated>
+    <updated>2018-04-07T15:25:44.134890+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -108,7 +147,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2018-02-24T14:44:26.069779+00:00</updated>
+    <updated>2018-04-07T15:25:44.135278+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -125,7 +164,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2018-02-24T14:44:26.070005+00:00</updated>
+    <updated>2018-04-07T15:25:44.135508+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -485,7 +524,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2018-02-24T14:44:26.072212+00:00</updated>
+    <updated>2018-04-07T15:25:44.137630+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -546,7 +585,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2018-02-24T14:44:26.072819+00:00</updated>
+    <updated>2018-04-07T15:25:44.138271+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -848,7 +887,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2018-02-24T14:44:26.074686+00:00</updated>
+    <updated>2018-04-07T15:25:44.140223+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -877,7 +916,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2018-02-24T14:44:26.075040+00:00</updated>
+    <updated>2018-04-07T15:25:44.140600+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -918,7 +957,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2018-02-24T14:44:26.075605+00:00</updated>
+    <updated>2018-04-07T15:25:44.141201+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1048,7 +1087,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2018-02-24T14:44:26.076382+00:00</updated>
+    <updated>2018-04-07T15:25:44.142029+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1154,7 +1193,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2018-02-24T14:44:26.077068+00:00</updated>
+    <updated>2018-04-07T15:25:44.142785+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1177,7 +1216,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2018-02-24T14:44:26.077321+00:00</updated>
+    <updated>2018-04-07T15:25:44.143140+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
