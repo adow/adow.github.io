@@ -2,19 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2018-04-07T15:25:44.133224+00:00</updated>
+  <updated>2018-04-07T15:28:40.348328+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派编程一个下载机</title>
-    <updated>2018-04-07T15:25:44.133573+00:00</updated>
+    <updated>2018-04-07T15:28:40.348593+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
     </author>
-    <content type="html">&lt;p&gt;一直以来我都想把盒子里面的树莓派拿出来用用，但是之前每次拿出来之后，看了下他简陋的样子，就想不起来有什么有趣的玩法。装几个传感器或者弄个物联网网关什么的好像没啥意思啊。&lt;/p&gt;
+    <content type="html">&lt;p&gt;一直以来我都想把树莓派拿出来用用，但是之前每次拿出来之后，看了下他简陋的样子，就想不起来有什么有趣的玩法。装几个传感器或者弄个物联网网关什么的好像没啥意思啊。&lt;/p&gt;
 
 &lt;p&gt;最近发现看个剧太麻烦，虽然现在我已经很难得看部电视剧或者电影了，但是各大视频平台上面找剧却越来越难了，我有时就想下载下来有空在盒子上面看看吧。但我真没想像我周围的伪技术宅们那样弄个群辉放家里就了事。当然我并不是讨厌 NAS，他们会告诉你有一堆 NB 的插件可用。唯一的原因是，我家里还有一个用了好多年的 Apple TimeCapsule。作为路由器，他的信号稳定，自带 2T 的硬盘可用来做 TimeMachine，盒子可以通过 &lt;code&gt;afp&lt;/code&gt; 协议播放里面的视频，好歹也是水果家的产品，放着不用也可惜。&lt;/p&gt;
 
@@ -48,7 +48,7 @@
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2018-04-07T15:25:44.134179+00:00</updated>
+    <updated>2018-04-07T15:28:40.349192+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -75,7 +75,7 @@
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2018-04-07T15:25:44.134518+00:00</updated>
+    <updated>2018-04-07T15:28:40.349629+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -112,7 +112,7 @@
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2018-04-07T15:25:44.134890+00:00</updated>
+    <updated>2018-04-07T15:28:40.350045+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -147,7 +147,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2018-04-07T15:25:44.135278+00:00</updated>
+    <updated>2018-04-07T15:28:40.350452+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -164,7 +164,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2018-04-07T15:25:44.135508+00:00</updated>
+    <updated>2018-04-07T15:28:40.350678+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -524,7 +524,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2018-04-07T15:25:44.137630+00:00</updated>
+    <updated>2018-04-07T15:28:40.352882+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -585,7 +585,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2018-04-07T15:25:44.138271+00:00</updated>
+    <updated>2018-04-07T15:28:40.353493+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -887,7 +887,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2018-04-07T15:25:44.140223+00:00</updated>
+    <updated>2018-04-07T15:28:40.355941+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -916,7 +916,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2018-04-07T15:25:44.140600+00:00</updated>
+    <updated>2018-04-07T15:28:40.356541+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -957,7 +957,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2018-04-07T15:25:44.141201+00:00</updated>
+    <updated>2018-04-07T15:28:40.357179+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1087,7 +1087,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2018-04-07T15:25:44.142029+00:00</updated>
+    <updated>2018-04-07T15:28:40.358046+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1193,7 +1193,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2018-04-07T15:25:44.142785+00:00</updated>
+    <updated>2018-04-07T15:28:40.358767+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1216,7 +1216,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2018-04-07T15:25:44.143140+00:00</updated>
+    <updated>2018-04-07T15:28:40.359032+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
