@@ -17,7 +17,7 @@
     
     
     #article-cover {
-      background-image:url('http://7vihfk.com1.z0.glb.clouddn.com/stoater-378124-unsplash.jpg');
+      background-image:url('http://images.codingnext.com/stoater-378124-unsplash.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -36,7 +36,7 @@
     <div class ='clearfix'></div>
     <div id="article">
       <div id="article-meta">
-        <time>2018-04-07 </time> <span class='article-category-author'>/ devlog by adow</span>  
+        <time>2018-11-04 </time> <span class='article-category-author'>/ devlog by adow</span>  
       </div>
       <h1 id="article-title">
         通过 Airtable 将树莓派变成一个下载机 
@@ -59,11 +59,11 @@
 <h2>第三步，编写下载任务脚本</h2>
 <p>我需要告诉 <a href="https://github.com/aria2/aria2" title="">aria2</a>, <a href="https://rg3.github.io/youtube-dl/" title="">youtube-dl</a> 下载哪些内容。这样我就需要一个任务队列。刚开始我是准备通过邮件来实现的：比如我在树莓派上面用 <code>Python</code> 写一个邮件接收的客户端，定时去取我指定的一个邮箱。当我要下载时，我就把整个 <code>aria2c</code> 或者 <code>youtube-dl</code> 命令发到我的那个邮箱中。当完成下载之后，他还可以通过邮件告诉我已经完成了。当然聪明的你肯定已经想到了这其实就是一个聊天系统，那通过接入微信，telegram 这样的聊天平台就更方便了。你想的一点都没错。不过我还想偷个懒，因为在我开始写代码之前发现了 <code>airtable.com</code>。他就是一个在线的 <code>excel</code>，好处是，他开放了 <code>resetful api</code> 供外部操作这个表。所以我在上面建了一个任务列表。然后树莓派上用 node 运行了一个简单的脚本程序，每隔几秒钟去刷新一下任务，然后运行这个任务的命令，完成之后把这个任务的终端输出更新到任务表的状态中去，就算完成了。</p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/baidupan-2.jpg" alt="img"></p>
+<p><img src="http://images.codingnext.com/baidupan-2.jpg" alt="img"></p>
 
 <p>这里我不得不表扬一下 <code>airtable.com</code>, 他的在线表格可以有各种表现形式。比如我可以将他转换为一个表单，这样我添加任务的时候就不要到表格里面去添加一行了，只要像在网站上填写资料时那样填写每一项就可以了。他甚至可以把表格变成一个 <code>看板</code>,这对于做项目管理就非常有用了。</p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/airtable-form-2.jpeg" alt="img"></p>
+<p><img src="http://images.codingnext.com/airtable-form-2.jpeg" alt="img"></p>
 
 <p>说起这个任务列表，他们其实就是一个个 Linux 的命令行程序，所以我里面可以写一个 <code>ls -li</code> 的命令来告诉我这个目录下的文件列表，也可以发起一个下载任务。然后你就会发现其实我还可以发起一个关机，或者格式化或者 <code>rm -rf /</code> 这样的命令，想想都觉得恐怖对不对。所以你不要指望我告诉你我的这个任务列表在哪里。</p>
 
@@ -71,7 +71,7 @@
 
 <p>这样，不管在外面还是在家中，你要下载的时候，只要打开任务列表的表单，然后填上下载命令就好了，科科。</p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/airtable-list-2.jpeg" alt="img"></p>
+<p><img src="http://images.codingnext.com/airtable-list-2.jpeg" alt="img"></p>
 
       </div>
       <div class="clearfix"></div>
@@ -101,10 +101,15 @@
       <div id = 'article-nav'>
         
         <h1 class = 'mark'>上一篇</h1> 
-        <h1><a href = 'using-javascript.html'> 最近使用 Javascript 生态环境开发的体验</a></h1>
+        <h1><a href = 'swift23_project.html'> 一次 Swift2.3 项目的维护经历</a></h1>
         
         <p></p>
         
+        
+        <h1 class = 'mark'>下一篇</h1>
+        <h1><a href = 'using-javascript.html'>最近使用 Javascript 生态环境开发的体验</a></h1> 
+        
+        <p></p>
         
         <h1 class = 'mark'><a href = 'archive.html'>阅读更多文章</a></h1>
       </div>

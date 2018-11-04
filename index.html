@@ -5,7 +5,7 @@
   <meta name="google-site-verification" content="vTaWd72F_kJY6mNbfoCQuutuGdH1kSsg7o3F31b3wgg" />
   <meta name="baidu-site-verification" content="6rfk66K9Nk" />
     
-  <title>通过 Airtable 将树莓派变成一个下载机</title>
+  <title>最近使用 Javascript 生态环境开发的体验</title>
   
   <meta name="author" content="adow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,7 @@
     
     
     #article-cover {
-      background-image:url('http://7vihfk.com1.z0.glb.clouddn.com/stoater-378124-unsplash.jpg');
+      background-image:url('http://images.codingnext.com/javascript.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -36,42 +36,30 @@
     <div class ='clearfix'></div>
     <div id="article">
       <div id="article-meta">
-        <time>2018-04-07 </time> <span class='article-category-author'>/ devlog by adow</span>  
+        <time>2018-11-04 </time> <span class='article-category-author'>/ dev by adow</span>  
       </div>
       <h1 id="article-title">
-        通过 Airtable 将树莓派变成一个下载机 
+        最近使用 Javascript 生态环境开发的体验 
       </h1>
       <h2 id = 'article-subtitle'>
          
       </h2>
       <div id = 'article-content'>
-        <p>一直以来我都想把树莓派拿出来用用，但是之前每次拿出来之后，看了下他简陋的样子，就想不起来有什么有趣的玩法。装几个传感器或者弄个物联网网关什么的好像没啥意思啊。</p>
+        <p>为了了解一下 Javascript 开发的生态环境，我开始做一个小工具 <code>paper</code>。他是一个在线的 Markdown 编辑器（使用 CodeMirror)。可以用来发布一篇文章，他们在服务器上都是有一个静态的 <code>md</code> 文件。在这过程中我计划粗浅的学习这些知识： React.js, Node.js, NPM/Yarn, Babel, Webpack, ES6.</p>
 
-<p>最近发现看个剧太麻烦，虽然现在我已经很难得看部电视剧或者电影了，但是各大视频平台上面找剧却越来越难了，我有时就想下载下来有空在盒子上面看看吧。但我真没想像我周围的伪技术宅们那样弄个群辉放家里就了事。当然我并不是讨厌 NAS，他们会告诉你有一堆 NB 的插件可用。唯一的原因是，我家里还有一个用了好多年的 Apple TimeCapsule。作为路由器，他的信号稳定，自带 2T 的硬盘可用来做 TimeMachine，盒子可以通过 <code>afp</code> 协议播放里面的视频，好歹也是水果家的产品，放着不用也可惜。</p>
+<p>本来只想用两天的时间来完成这个测试项目，但是实际却用了五天。在一个全新的开发环境中开发不是那么容易，不过还好这次的体验中并没有遇到太多的坑。</p>
 
-<p>既然这样，我就岂不是只要一个下载器就好了。记住，当你听到有一个程序员说我只要做一个什么就好了的时候，你就要明白这家伙又要开始挖坑了。下面是我开始折腾的步骤：</p>
-<h2>第一步，安装下载工具</h2>
-<p>在树莓派 Raspberry 里面安装 <a href="https://github.com/aria2/aria2" title="">aria2</a> 这个下载工具，还顺便装了 <a href="https://rg3.github.io/youtube-dl/" title="">youtube-dl</a> 用来下载各大视频网站的内容。<code>aria2</code> 除了可以进行传统的 http 下载外，还可以配合百度盘插件来下载（顺便说一句，他可以突破百度盘的下载限速，但我用的时候从来没满速过，只是比限速要快）。此外他还有众多 <code>web</code> 界面可供选择，所以其实我只要通过 web 界面就可以给他指定下载任务了。但是由于在外面的时候就得涉及到穿透内网的需求了，而我好像对此并不是那么强烈，所以我还是只用了最传统的 <code>aria2c</code> 命令行的方式进行下载。</p>
+<p>大多数时候使用了 yarn 来作为包管理工具，因为以前并不用npm，所以没法做比较。当然这些东西比 python 下用 <code>easy_install</code> 和 pip 轻松多了。安装所有的包都很顺利。（只要不打开那个可怕的 <code>node_modules</code> 目录都觉得压力不大）</p>
 
-<p><code>aria2</code> 虽然可以下载 <code>BT</code> 和磁力链协议，但是我在网速搜了一圈也没在自己机器上用起来，所以我现在的下载方法是先将他们用百度盘离线下载，然后再从百度盘下载。**如果你有办法用 BT 和磁力链请一定要告诉我**</p>
-<h2>第二步，把树莓派连上时光胶囊</h2>
-<p>这本来是很简单的一步，但是我当时可是搜索了好长时间才找到了可用的办法。</p>
-<h2>第三步，编写下载任务脚本</h2>
-<p>我需要告诉 <a href="https://github.com/aria2/aria2" title="">aria2</a>, <a href="https://rg3.github.io/youtube-dl/" title="">youtube-dl</a> 下载哪些内容。这样我就需要一个任务队列。刚开始我是准备通过邮件来实现的：比如我在树莓派上面用 <code>Python</code> 写一个邮件接收的客户端，定时去取我指定的一个邮箱。当我要下载时，我就把整个 <code>aria2c</code> 或者 <code>youtube-dl</code> 命令发到我的那个邮箱中。当完成下载之后，他还可以通过邮件告诉我已经完成了。当然聪明的你肯定已经想到了这其实就是一个聊天系统，那通过接入微信，telegram 这样的聊天平台就更方便了。你想的一点都没错。不过我还想偷个懒，因为在我开始写代码之前发现了 <code>airtable.com</code>。他就是一个在线的 <code>excel</code>，好处是，他开放了 <code>resetful api</code> 供外部操作这个表。所以我在上面建了一个任务列表。然后树莓派上用 node 运行了一个简单的脚本程序，每隔几秒钟去刷新一下任务，然后运行这个任务的命令，完成之后把这个任务的终端输出更新到任务表的状态中去，就算完成了。</p>
+<p>webpack 作为打包工具虽然需要配置，但是使用起来并一点也不轻松。难的地方在如何规划好现在的开发目录和发布目录，对此我还没有太多的经验，以至于全部完成项目之后，又觉得各个文件位置放的不合理，然后又重新梳理里了好几遍，以至于改了好几次配置文件。</p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/baidupan-2.jpg" alt="img"></p>
+<p>之前用 react.js 来作个文档项目的时候并没有使用任何包管理和打包工具。我只是使用了 react的两个文件和babel的浏览器运行时文件。当然我觉得直接这样用对我而言已经足够了。不过这次为了体验一下尽可能多的 javascript 生态环境，我还是用 webpack 来进行打包。使用下来之后我仍然对前端打包工具带来的益处存在疑虑，因为他们的复杂性并不小于所带来的好处。</p>
 
-<p>这里我不得不表扬一下 <code>airtable.com</code>, 他的在线表格可以有各种表现形式。比如我可以将他转换为一个表单，这样我添加任务的时候就不要到表格里面去添加一行了，只要像在网站上填写资料时那样填写每一项就可以了。他甚至可以把表格变成一个 <code>看板</code>,这对于做项目管理就非常有用了。</p>
+<p>Node.js 的使用让我感到很轻松，用 http，fs，path 模块非常方便的完成了这次的服务端开发，虽然一开始发现 http 模块没有自带静态文件解析有点惊讶，但是事实上自己来实现一个简单的并没有花多少时间。总体感觉和用 python/webpy/tornado 的体验差不了多少。</p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/airtable-form-2.jpeg" alt="img"></p>
+<p>最后说说 ES6。由于之前没有完整的看过 ES6 的书，只凭借脑海中以前看到的一些零星的记忆在客户端和服务端代码中都用一些他的语法。由于我已经使用过好多种编程语言，所以使用的时候没有遇到什么问题，总之觉得都很自然。之前我一直用 ES5 的语法来写 react.js，替换过来也很顺利。所以用现代化的 javascript 来写代码的确非常的流畅和舒心。</p>
 
-<p>说起这个任务列表，他们其实就是一个个 Linux 的命令行程序，所以我里面可以写一个 <code>ls -li</code> 的命令来告诉我这个目录下的文件列表，也可以发起一个下载任务。然后你就会发现其实我还可以发起一个关机，或者格式化或者 <code>rm -rf /</code> 这样的命令，想想都觉得恐怖对不对。所以你不要指望我告诉你我的这个任务列表在哪里。</p>
-
-<p>这样做其实很简单对不对，只要有一点点编程的知识（我骗你的，一点点的编程知识肯定不够，因为只学一点点编程的人才不会去学 NodeJS）你就可以作出一个下载机。</p>
-
-<p>这样，不管在外面还是在家中，你要下载的时候，只要打开任务列表的表单，然后填上下载命令就好了，科科。</p>
-
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/airtable-list-2.jpeg" alt="img"></p>
+<p>总体而言，我觉得现在使用 javascript 作为开发工具已经具备非常好的条件。有很多成熟的工具来改进开发体验，甚至觉得现在前端届出来的太多库和框架，让选择变的太困难了。javascript 这么糟糕的语言经过这么多年无数前端程序员无尽的踩坑之后，终于变成了一个靠谱的工具了。</p>
 
       </div>
       <div class="clearfix"></div>
@@ -84,14 +72,14 @@
         <a class="jiathis_button_pocket"></a>
         </div>
         <script type="text/javascript" >
-        var title = '通过 Airtable 将树莓派变成一个下载机';
+        var title = '最近使用 Javascript 生态环境开发的体验';
         
         var jiathis_config={
           summary:"",
           shortUrl:false,
           hideMore:true,
           title:title,
-          url:'http://codingnext.com/taskjs.html'
+          url:'http://codingnext.com/using-javascript.html'
         }
         </script>
         <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
@@ -101,7 +89,7 @@
       <div id = 'article-nav'>
         
         <h1 class = 'mark'>上一篇</h1> 
-        <h1><a href = 'using-javascript.html'> 最近使用 Javascript 生态环境开发的体验</a></h1>
+        <h1><a href = 'taskjs.html'> 通过 Airtable 将树莓派变成一个下载机</a></h1>
         
         <p></p>
         
@@ -109,29 +97,6 @@
         <h1 class = 'mark'><a href = 'archive.html'>阅读更多文章</a></h1>
       </div>
       <div class="clearfix"></div>
-      
-      <div id = 'article-feedback'>
-        <div id="disqus_thread"></div>
-        <script>
-        /**
-        * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-        */
-        var disqus_config = function () {
-          this.page.url = 'http://codingnext.com/taskjs.html'; // Replace PAGE_URL with your page's canonical URL variable
-          this.page.identifier = 'taskjs.html' // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-
-        s.src = '//adowblog.disqus.com/embed.js';
-
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-      </div>
       
       <div class="clearfix"></div>
       <div class = 'footer'>

@@ -17,7 +17,7 @@
     
     
     #article-header {
-      background-image:url('http://7vihfk.com1.z0.glb.clouddn.com/pexels-photo-55613.jpg');
+      background-image:url('http://images.codingnext.com/pexels-photo-55613.jpg');
     }
     
   </style>  
@@ -160,9 +160,9 @@ sessionConfiguration.URLCache = cache</code></pre>
 
 <p>在开发中，我们只需要在服务端为每个图片资源设置 <code>Cache-Control</code> 响应头，比如下面的地址</p>
 
-<p><a href="http://7vihfk.com1.z0.glb.clouddn.com/photo-1457369804613-52c61a468e7d.jpeg" title="">http://7vihfk.com1.z0.glb.clouddn.com/photo-1457369804613-52c61a468e7d.jpeg</a></p>
+<p><a href="http://images.codingnext.com/photo-1457369804613-52c61a468e7d.jpeg" title="">http://images.codingnext.com/photo-1457369804613-52c61a468e7d.jpeg</a></p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/cache-control.png" alt="cache-control.png"></p>
+<p><img src="http://images.codingnext.com/cache-control.png" alt="cache-control.png"></p>
 
 <p>的 Response Header 中有字段: <code>Cache-Control:public, max-age=31536000</code>, 这样就可以确定这个资源的缓存时间。 但事实上，在 App 的开发过程中，我们不需要关心这个的，唯一要做的就是告诉服务端开发的人员务必在静态资源中输出正确的的 <code>Header</code>。</p>
 
@@ -186,9 +186,9 @@ sessionConfiguration.URLCache = cache</code></pre>
 
 <p>除此之外，我还写了一个 Demo, 用来显示这个功能， 这个 App 调用了 <code>500px.com</code> 的编辑选推图片列表的接口，我们将他们显示在一个 <code>UICollectionView</code> 上，点击的时候还会看到这个作品的详细大图；</p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/500px-list.png" alt="500px-list.png"></p>
+<p><img src="http://images.codingnext.com/500px-list.png" alt="500px-list.png"></p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/500px-detail.png" alt="500px-detail.png"></p>
+<p><img src="http://images.codingnext.com/500px-detail.png" alt="500px-detail.png"></p>
 <h3>构建 AWebImage</h3>
 <p>我们实际使用的是一个 <code>AWImageLoader</code>, 调用其中的 <code>func downloadImage(url:NSURL, callback : AWImageLoaderCallback)</code> 来获取网络图片内容（或者来自本地缓存）。</p>
 
@@ -457,7 +457,7 @@ private func aw_setImage(image:UIImage){
           <li class = 'next'>上一篇: <a href = 'nsurlcache.html'> 说说 NSURLCache 中的那些坑</a></li> 
           
           
-          <li class = 'previous'>下一篇: <a href = '20171103-ps4-in-box.html'>20171103 PS4 最终还是被收起来了</a></li> 
+          <li class = 'previous'>下一篇: <a href = '20171110-youcompleteme.html'>20171110 一整天都在和 YouCompleteMe 较劲</a></li> 
           
         </ul>
       </div>

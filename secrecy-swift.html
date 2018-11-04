@@ -97,7 +97,7 @@ $ brew install carthage</code></pre>
 <li><p>运行 <code>Carthage update</code>, 获取 SecrecySwift;</p></li>
 <li><p>拖动 <code>Carthage/Build/iOS</code> 下面的 <code>Secrecy.framwork</code> 到项目 <code>Targets</code>, <code>General</code> 设置标签的 <code>Linked Frameworks and Linraries</code> 中；</p>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/secrecy-1-800.jpg" alt="secrecy-1"></p></li>
+<p><img src="http://images.codingnext.com/secrecy-1-800.jpg" alt="secrecy-1"></p></li>
 <li><p>在 <code>Targes</code> 的 <code>Build Phases</code> 设置中，点击 <code>+</code> 按钮，添加 <code>New Run Script Phase</code> 来添加脚本:</p>
 
 <pre><code>/usr/local/bin/carthage copy-frameworks</code></pre>
@@ -106,7 +106,7 @@ $ brew install carthage</code></pre>
 
 <pre><code>$(SRCROOT)/Carthage/Build/iOS/Secrecy.framework</code></pre>
 
-<p><img src="http://7vihfk.com1.z0.glb.clouddn.com/secrecy-2-800.jpg" alt="secrecy-2"></p></li>
+<p><img src="http://images.codingnext.com/secrecy-2-800.jpg" alt="secrecy-2"></p></li>
 </ol>
 <h3>手动安装</h3><h4>通过 Git Submodule</h4>
 <p>通过 Submodule 将 SecrecySwift 作为 Embedded Framework 添加到项目中。</p>

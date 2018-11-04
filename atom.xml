@@ -2,53 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2018-04-07T15:35:29.744741+00:00</updated>
+  <updated>2018-11-04T15:38:59.811944+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
-    <id>taskjs.html</id>
-    <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2018-04-07T15:35:29.745019+00:00</updated>
-    <author>
-      <name>adow</name>
-      <email>reynoldqin@gmail.com</email>
-    </author>
-    <content type="html">&lt;p&gt;一直以来我都想把树莓派拿出来用用，但是之前每次拿出来之后，看了下他简陋的样子，就想不起来有什么有趣的玩法。装几个传感器或者弄个物联网网关什么的好像没啥意思啊。&lt;/p&gt;
-
-&lt;p&gt;最近发现看个剧太麻烦，虽然现在我已经很难得看部电视剧或者电影了，但是各大视频平台上面找剧却越来越难了，我有时就想下载下来有空在盒子上面看看吧。但我真没想像我周围的伪技术宅们那样弄个群辉放家里就了事。当然我并不是讨厌 NAS，他们会告诉你有一堆 NB 的插件可用。唯一的原因是，我家里还有一个用了好多年的 Apple TimeCapsule。作为路由器，他的信号稳定，自带 2T 的硬盘可用来做 TimeMachine，盒子可以通过 &lt;code&gt;afp&lt;/code&gt; 协议播放里面的视频，好歹也是水果家的产品，放着不用也可惜。&lt;/p&gt;
-
-&lt;p&gt;既然这样，我就岂不是只要一个下载器就好了。记住，当你听到有一个程序员说我只要做一个什么就好了的时候，你就要明白这家伙又要开始挖坑了。下面是我开始折腾的步骤：&lt;/p&gt;
-&lt;h2&gt;第一步，安装下载工具&lt;/h2&gt;
-&lt;p&gt;在树莓派 Raspberry 里面安装 &lt;a href="https://github.com/aria2/aria2" title=""&gt;aria2&lt;/a&gt; 这个下载工具，还顺便装了 &lt;a href="https://rg3.github.io/youtube-dl/" title=""&gt;youtube-dl&lt;/a&gt; 用来下载各大视频网站的内容。&lt;code&gt;aria2&lt;/code&gt; 除了可以进行传统的 http 下载外，还可以配合百度盘插件来下载（顺便说一句，他可以突破百度盘的下载限速，但我用的时候从来没满速过，只是比限速要快）。此外他还有众多 &lt;code&gt;web&lt;/code&gt; 界面可供选择，所以其实我只要通过 web 界面就可以给他指定下载任务了。但是由于在外面的时候就得涉及到穿透内网的需求了，而我好像对此并不是那么强烈，所以我还是只用了最传统的 &lt;code&gt;aria2c&lt;/code&gt; 命令行的方式进行下载。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;aria2&lt;/code&gt; 虽然可以下载 &lt;code&gt;BT&lt;/code&gt; 和磁力链协议，但是我在网速搜了一圈也没在自己机器上用起来，所以我现在的下载方法是先将他们用百度盘离线下载，然后再从百度盘下载。**如果你有办法用 BT 和磁力链请一定要告诉我**&lt;/p&gt;
-&lt;h2&gt;第二步，把树莓派连上时光胶囊&lt;/h2&gt;
-&lt;p&gt;这本来是很简单的一步，但是我当时可是搜索了好长时间才找到了可用的办法。&lt;/p&gt;
-&lt;h2&gt;第三步，编写下载任务脚本&lt;/h2&gt;
-&lt;p&gt;我需要告诉 &lt;a href="https://github.com/aria2/aria2" title=""&gt;aria2&lt;/a&gt;, &lt;a href="https://rg3.github.io/youtube-dl/" title=""&gt;youtube-dl&lt;/a&gt; 下载哪些内容。这样我就需要一个任务队列。刚开始我是准备通过邮件来实现的：比如我在树莓派上面用 &lt;code&gt;Python&lt;/code&gt; 写一个邮件接收的客户端，定时去取我指定的一个邮箱。当我要下载时，我就把整个 &lt;code&gt;aria2c&lt;/code&gt; 或者 &lt;code&gt;youtube-dl&lt;/code&gt; 命令发到我的那个邮箱中。当完成下载之后，他还可以通过邮件告诉我已经完成了。当然聪明的你肯定已经想到了这其实就是一个聊天系统，那通过接入微信，telegram 这样的聊天平台就更方便了。你想的一点都没错。不过我还想偷个懒，因为在我开始写代码之前发现了 &lt;code&gt;airtable.com&lt;/code&gt;。他就是一个在线的 &lt;code&gt;excel&lt;/code&gt;，好处是，他开放了 &lt;code&gt;resetful api&lt;/code&gt; 供外部操作这个表。所以我在上面建了一个任务列表。然后树莓派上用 node 运行了一个简单的脚本程序，每隔几秒钟去刷新一下任务，然后运行这个任务的命令，完成之后把这个任务的终端输出更新到任务表的状态中去，就算完成了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/baidupan-2.jpg" alt="img"&gt;&lt;/p&gt;
-
-&lt;p&gt;这里我不得不表扬一下 &lt;code&gt;airtable.com&lt;/code&gt;, 他的在线表格可以有各种表现形式。比如我可以将他转换为一个表单，这样我添加任务的时候就不要到表格里面去添加一行了，只要像在网站上填写资料时那样填写每一项就可以了。他甚至可以把表格变成一个 &lt;code&gt;看板&lt;/code&gt;,这对于做项目管理就非常有用了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/airtable-form-2.jpeg" alt="img"&gt;&lt;/p&gt;
-
-&lt;p&gt;说起这个任务列表，他们其实就是一个个 Linux 的命令行程序，所以我里面可以写一个 &lt;code&gt;ls -li&lt;/code&gt; 的命令来告诉我这个目录下的文件列表，也可以发起一个下载任务。然后你就会发现其实我还可以发起一个关机，或者格式化或者 &lt;code&gt;rm -rf /&lt;/code&gt; 这样的命令，想想都觉得恐怖对不对。所以你不要指望我告诉你我的这个任务列表在哪里。&lt;/p&gt;
-
-&lt;p&gt;这样做其实很简单对不对，只要有一点点编程的知识（我骗你的，一点点的编程知识肯定不够，因为只学一点点编程的人才不会去学 NodeJS）你就可以作出一个下载机。&lt;/p&gt;
-
-&lt;p&gt;这样，不管在外面还是在家中，你要下载的时候，只要打开任务列表的表单，然后填上下载命令就好了，科科。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/airtable-list-2.jpeg" alt="img"&gt;&lt;/p&gt;
-</content>
-    <link href="http://codingnext.com/taskjs.html" rel="alternate"/>
-    <published>2018-04-07T00:00:00+08:00</published>
-  </entry>
-  <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2018-04-07T15:35:29.745780+00:00</updated>
+    <updated>2018-11-04T15:38:59.812103+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -70,12 +31,51 @@
 &lt;p&gt;总体而言，我觉得现在使用 javascript 作为开发工具已经具备非常好的条件。有很多成熟的工具来改进开发体验，甚至觉得现在前端届出来的太多库和框架，让选择变的太困难了。javascript 这么糟糕的语言经过这么多年无数前端程序员无尽的踩坑之后，终于变成了一个靠谱的工具了。&lt;/p&gt;
 </content>
     <link href="http://codingnext.com/using-javascript.html" rel="alternate"/>
-    <published>2018-01-08T00:00:00+08:00</published>
+    <published>2018-11-04T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>taskjs.html</id>
+    <title>通过 Airtable 将树莓派变成一个下载机</title>
+    <updated>2018-11-04T15:38:59.812347+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;一直以来我都想把树莓派拿出来用用，但是之前每次拿出来之后，看了下他简陋的样子，就想不起来有什么有趣的玩法。装几个传感器或者弄个物联网网关什么的好像没啥意思啊。&lt;/p&gt;
+
+&lt;p&gt;最近发现看个剧太麻烦，虽然现在我已经很难得看部电视剧或者电影了，但是各大视频平台上面找剧却越来越难了，我有时就想下载下来有空在盒子上面看看吧。但我真没想像我周围的伪技术宅们那样弄个群辉放家里就了事。当然我并不是讨厌 NAS，他们会告诉你有一堆 NB 的插件可用。唯一的原因是，我家里还有一个用了好多年的 Apple TimeCapsule。作为路由器，他的信号稳定，自带 2T 的硬盘可用来做 TimeMachine，盒子可以通过 &lt;code&gt;afp&lt;/code&gt; 协议播放里面的视频，好歹也是水果家的产品，放着不用也可惜。&lt;/p&gt;
+
+&lt;p&gt;既然这样，我就岂不是只要一个下载器就好了。记住，当你听到有一个程序员说我只要做一个什么就好了的时候，你就要明白这家伙又要开始挖坑了。下面是我开始折腾的步骤：&lt;/p&gt;
+&lt;h2&gt;第一步，安装下载工具&lt;/h2&gt;
+&lt;p&gt;在树莓派 Raspberry 里面安装 &lt;a href="https://github.com/aria2/aria2" title=""&gt;aria2&lt;/a&gt; 这个下载工具，还顺便装了 &lt;a href="https://rg3.github.io/youtube-dl/" title=""&gt;youtube-dl&lt;/a&gt; 用来下载各大视频网站的内容。&lt;code&gt;aria2&lt;/code&gt; 除了可以进行传统的 http 下载外，还可以配合百度盘插件来下载（顺便说一句，他可以突破百度盘的下载限速，但我用的时候从来没满速过，只是比限速要快）。此外他还有众多 &lt;code&gt;web&lt;/code&gt; 界面可供选择，所以其实我只要通过 web 界面就可以给他指定下载任务了。但是由于在外面的时候就得涉及到穿透内网的需求了，而我好像对此并不是那么强烈，所以我还是只用了最传统的 &lt;code&gt;aria2c&lt;/code&gt; 命令行的方式进行下载。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;aria2&lt;/code&gt; 虽然可以下载 &lt;code&gt;BT&lt;/code&gt; 和磁力链协议，但是我在网速搜了一圈也没在自己机器上用起来，所以我现在的下载方法是先将他们用百度盘离线下载，然后再从百度盘下载。**如果你有办法用 BT 和磁力链请一定要告诉我**&lt;/p&gt;
+&lt;h2&gt;第二步，把树莓派连上时光胶囊&lt;/h2&gt;
+&lt;p&gt;这本来是很简单的一步，但是我当时可是搜索了好长时间才找到了可用的办法。&lt;/p&gt;
+&lt;h2&gt;第三步，编写下载任务脚本&lt;/h2&gt;
+&lt;p&gt;我需要告诉 &lt;a href="https://github.com/aria2/aria2" title=""&gt;aria2&lt;/a&gt;, &lt;a href="https://rg3.github.io/youtube-dl/" title=""&gt;youtube-dl&lt;/a&gt; 下载哪些内容。这样我就需要一个任务队列。刚开始我是准备通过邮件来实现的：比如我在树莓派上面用 &lt;code&gt;Python&lt;/code&gt; 写一个邮件接收的客户端，定时去取我指定的一个邮箱。当我要下载时，我就把整个 &lt;code&gt;aria2c&lt;/code&gt; 或者 &lt;code&gt;youtube-dl&lt;/code&gt; 命令发到我的那个邮箱中。当完成下载之后，他还可以通过邮件告诉我已经完成了。当然聪明的你肯定已经想到了这其实就是一个聊天系统，那通过接入微信，telegram 这样的聊天平台就更方便了。你想的一点都没错。不过我还想偷个懒，因为在我开始写代码之前发现了 &lt;code&gt;airtable.com&lt;/code&gt;。他就是一个在线的 &lt;code&gt;excel&lt;/code&gt;，好处是，他开放了 &lt;code&gt;resetful api&lt;/code&gt; 供外部操作这个表。所以我在上面建了一个任务列表。然后树莓派上用 node 运行了一个简单的脚本程序，每隔几秒钟去刷新一下任务，然后运行这个任务的命令，完成之后把这个任务的终端输出更新到任务表的状态中去，就算完成了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://images.codingnext.com/baidupan-2.jpg" alt="img"&gt;&lt;/p&gt;
+
+&lt;p&gt;这里我不得不表扬一下 &lt;code&gt;airtable.com&lt;/code&gt;, 他的在线表格可以有各种表现形式。比如我可以将他转换为一个表单，这样我添加任务的时候就不要到表格里面去添加一行了，只要像在网站上填写资料时那样填写每一项就可以了。他甚至可以把表格变成一个 &lt;code&gt;看板&lt;/code&gt;,这对于做项目管理就非常有用了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://images.codingnext.com/airtable-form-2.jpeg" alt="img"&gt;&lt;/p&gt;
+
+&lt;p&gt;说起这个任务列表，他们其实就是一个个 Linux 的命令行程序，所以我里面可以写一个 &lt;code&gt;ls -li&lt;/code&gt; 的命令来告诉我这个目录下的文件列表，也可以发起一个下载任务。然后你就会发现其实我还可以发起一个关机，或者格式化或者 &lt;code&gt;rm -rf /&lt;/code&gt; 这样的命令，想想都觉得恐怖对不对。所以你不要指望我告诉你我的这个任务列表在哪里。&lt;/p&gt;
+
+&lt;p&gt;这样做其实很简单对不对，只要有一点点编程的知识（我骗你的，一点点的编程知识肯定不够，因为只学一点点编程的人才不会去学 NodeJS）你就可以作出一个下载机。&lt;/p&gt;
+
+&lt;p&gt;这样，不管在外面还是在家中，你要下载的时候，只要打开任务列表的表单，然后填上下载命令就好了，科科。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://images.codingnext.com/airtable-list-2.jpeg" alt="img"&gt;&lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/taskjs.html" rel="alternate"/>
+    <published>2018-11-04T00:00:00+08:00</published>
   </entry>
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2018-04-07T15:35:29.746316+00:00</updated>
+    <updated>2018-11-04T15:38:59.812677+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -107,12 +107,29 @@
 &lt;p&gt;有的时候我真怀念写 c 或者 python 的瞬间，只要一个 vim 编辑器，在任意一台 MacOS, Linux 上就可以快乐的写程序。野心勃勃而又越来越庞大的 Swift，不知道什么时候才能有这一天呢。&lt;/p&gt;
 </content>
     <link href="http://codingnext.com/swift23_project.html" rel="alternate"/>
-    <published>2017-11-20T00:00:00+08:00</published>
+    <published>2018-11-04T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>20171103-ps4-in-box.html</id>
+    <title>20171103 PS4 最终还是被收起来了</title>
+    <updated>2018-11-04T15:38:59.812910+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;今天把 PS4 收起来了，因为一段时间内是没有时间去玩他了。不管是把他放在电视柜上，还是在办公桌上，大部分时间也就是在积灰而已。本来计划每个周末至少有一个晚上来玩游戏，但是实际上很少能做到。有时是因为这周的计划没有完成，所以占用了游戏的时间，有时就是因为懒而已，不想再耗费精力玩游戏。&lt;/p&gt;
+
+&lt;p&gt;在这个主机上我玩的最多的是 PES2016，我每次只使用一个队踢几场热身赛，很少去踢欧冠，其他模式是根本连看都没看过。所以新版的 PES 2018 只是下载了一个试玩版就足够了，唯一的不足在于里面没有 Arsenal，所以我只能使用利物浦随便踢的玩玩。&lt;/p&gt;
+
+&lt;p&gt;入手主机的初衷是想玩几款白金大作。 MGS5 玩到第八章就玩不下去了，动作类游戏对我的操作要求太高了。即使这样，我还是没有吸取教训，又买了神海4，结果连第二章都只玩了一个开头。我最期待的 FF15 买了国行版，虽然评价一般，但是我玩起来还是很喜欢，只是一直停留在第五章。现在他们都和主机一起被收起来了，在我的一些工作完成之前，我都不想再打开他们。&lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/20171103-ps4-in-box.html" rel="alternate"/>
+    <published>2018-11-04T00:00:00+08:00</published>
   </entry>
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2018-04-07T15:35:29.746743+00:00</updated>
+    <updated>2018-11-04T15:38:59.813056+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -145,26 +162,9 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
     <published>2017-11-10T00:00:00+08:00</published>
   </entry>
   <entry>
-    <id>20171103-ps4-in-box.html</id>
-    <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2018-04-07T15:35:29.747232+00:00</updated>
-    <author>
-      <name>adow</name>
-      <email>reynoldqin@gmail.com</email>
-    </author>
-    <content type="html">&lt;p&gt;今天把 PS4 收起来了，因为一段时间内是没有时间去玩他了。不管是把他放在电视柜上，还是在办公桌上，大部分时间也就是在积灰而已。本来计划每个周末至少有一个晚上来玩游戏，但是实际上很少能做到。有时是因为这周的计划没有完成，所以占用了游戏的时间，有时就是因为懒而已，不想再耗费精力玩游戏。&lt;/p&gt;
-
-&lt;p&gt;在这个主机上我玩的最多的是 PES2016，我每次只使用一个队踢几场热身赛，很少去踢欧冠，其他模式是根本连看都没看过。所以新版的 PES 2018 只是下载了一个试玩版就足够了，唯一的不足在于里面没有 Arsenal，所以我只能使用利物浦随便踢的玩玩。&lt;/p&gt;
-
-&lt;p&gt;入手主机的初衷是想玩几款白金大作。 MGS5 玩到第八章就玩不下去了，动作类游戏对我的操作要求太高了。即使这样，我还是没有吸取教训，又买了神海4，结果连第二章都只玩了一个开头。我最期待的 FF15 买了国行版，虽然评价一般，但是我玩起来还是很喜欢，只是一直停留在第五章。现在他们都和主机一起被收起来了，在我的一些工作完成之前，我都不想再打开他们。&lt;/p&gt;
-</content>
-    <link href="http://codingnext.com/20171103-ps4-in-box.html" rel="alternate"/>
-    <published>2017-11-07T00:00:00+08:00</published>
-  </entry>
-  <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2018-04-07T15:35:29.747526+00:00</updated>
+    <updated>2018-11-04T15:38:59.813295+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -258,9 +258,9 @@ sessionConfiguration.URLCache = cache&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;在开发中，我们只需要在服务端为每个图片资源设置 &lt;code&gt;Cache-Control&lt;/code&gt; 响应头，比如下面的地址&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://7vihfk.com1.z0.glb.clouddn.com/photo-1457369804613-52c61a468e7d.jpeg" title=""&gt;http://7vihfk.com1.z0.glb.clouddn.com/photo-1457369804613-52c61a468e7d.jpeg&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://images.codingnext.com/photo-1457369804613-52c61a468e7d.jpeg" title=""&gt;http://images.codingnext.com/photo-1457369804613-52c61a468e7d.jpeg&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/cache-control.png" alt="cache-control.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://images.codingnext.com/cache-control.png" alt="cache-control.png"&gt;&lt;/p&gt;
 
 &lt;p&gt;的 Response Header 中有字段: &lt;code&gt;Cache-Control:public, max-age=31536000&lt;/code&gt;, 这样就可以确定这个资源的缓存时间。 但事实上，在 App 的开发过程中，我们不需要关心这个的，唯一要做的就是告诉服务端开发的人员务必在静态资源中输出正确的的 &lt;code&gt;Header&lt;/code&gt;。&lt;/p&gt;
 
@@ -284,9 +284,9 @@ sessionConfiguration.URLCache = cache&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;除此之外，我还写了一个 Demo, 用来显示这个功能， 这个 App 调用了 &lt;code&gt;500px.com&lt;/code&gt; 的编辑选推图片列表的接口，我们将他们显示在一个 &lt;code&gt;UICollectionView&lt;/code&gt; 上，点击的时候还会看到这个作品的详细大图；&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/500px-list.png" alt="500px-list.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://images.codingnext.com/500px-list.png" alt="500px-list.png"&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/500px-detail.png" alt="500px-detail.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://images.codingnext.com/500px-detail.png" alt="500px-detail.png"&gt;&lt;/p&gt;
 &lt;h3&gt;构建 AWebImage&lt;/h3&gt;
 &lt;p&gt;我们实际使用的是一个 &lt;code&gt;AWImageLoader&lt;/code&gt;, 调用其中的 &lt;code&gt;func downloadImage(url:NSURL, callback : AWImageLoaderCallback)&lt;/code&gt; 来获取网络图片内容（或者来自本地缓存）。&lt;/p&gt;
 
@@ -524,7 +524,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2018-04-07T15:35:29.750005+00:00</updated>
+    <updated>2018-11-04T15:38:59.814688+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -585,7 +585,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2018-04-07T15:35:29.750645+00:00</updated>
+    <updated>2018-11-04T15:38:59.815127+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -887,7 +887,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2018-04-07T15:35:29.752618+00:00</updated>
+    <updated>2018-11-04T15:38:59.816411+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -916,7 +916,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2018-04-07T15:35:29.753008+00:00</updated>
+    <updated>2018-11-04T15:38:59.816661+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -957,7 +957,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2018-04-07T15:35:29.753619+00:00</updated>
+    <updated>2018-11-04T15:38:59.817039+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1059,7 +1059,7 @@ func cx_removeSeperator() {
 &lt;h2&gt;被遮挡的子视图背景色&lt;/h2&gt;
 &lt;p&gt;当 UITableViewCell 中增加一些子视图的时候，有时点击 Cell 的时候就会发现有些子视图的背景色不见了。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/Simulator%20Screen%20Shot%202016%E5%B9%B43%E6%9C%8830%E6%97%A5%20%E4%B8%8B%E5%8D%882.37.42.png" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://images.codingnext.com/Simulator%20Screen%20Shot%202016%E5%B9%B43%E6%9C%8830%E6%97%A5%20%E4%B8%8B%E5%8D%882.37.42.png" alt=""&gt;&lt;/p&gt;
 
 &lt;p&gt;这是由于当点击 Cell 的时候，子元素会变成 Hightlighted 状态，而选中之后又会变成 Selected 状态，UITableViewCell 的状态会传递给子视图。有些 View (比如 UIButton, UILabel 等) 会根据状态呈现不同的样式的时候，他们就会在 UITableViewCell 被点击和选择的时候被呈现出不同的样子了。&lt;/p&gt;
 
@@ -1087,7 +1087,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2018-04-07T15:35:29.754487+00:00</updated>
+    <updated>2018-11-04T15:38:59.817560+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1193,7 +1193,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2018-04-07T15:35:29.755336+00:00</updated>
+    <updated>2018-11-04T15:38:59.818012+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1216,7 +1216,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2018-04-07T15:35:29.755631+00:00</updated>
+    <updated>2018-11-04T15:38:59.818183+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1247,7 +1247,7 @@ $ brew install carthage&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;p&gt;运行 &lt;code&gt;Carthage update&lt;/code&gt;, 获取 SecrecySwift;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;拖动 &lt;code&gt;Carthage/Build/iOS&lt;/code&gt; 下面的 &lt;code&gt;Secrecy.framwork&lt;/code&gt; 到项目 &lt;code&gt;Targets&lt;/code&gt;, &lt;code&gt;General&lt;/code&gt; 设置标签的 &lt;code&gt;Linked Frameworks and Linraries&lt;/code&gt; 中；&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/secrecy-1-800.jpg" alt="secrecy-1"&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src="http://images.codingnext.com/secrecy-1-800.jpg" alt="secrecy-1"&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;在 &lt;code&gt;Targes&lt;/code&gt; 的 &lt;code&gt;Build Phases&lt;/code&gt; 设置中，点击 &lt;code&gt;+&lt;/code&gt; 按钮，添加 &lt;code&gt;New Run Script Phase&lt;/code&gt; 来添加脚本:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;/usr/local/bin/carthage copy-frameworks&lt;/code&gt;&lt;/pre&gt;
@@ -1256,7 +1256,7 @@ $ brew install carthage&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;$(SRCROOT)/Carthage/Build/iOS/Secrecy.framework&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src="http://7vihfk.com1.z0.glb.clouddn.com/secrecy-2-800.jpg" alt="secrecy-2"&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src="http://images.codingnext.com/secrecy-2-800.jpg" alt="secrecy-2"&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;手动安装&lt;/h3&gt;&lt;h4&gt;通过 Git Submodule&lt;/h4&gt;
 &lt;p&gt;通过 Submodule 将 SecrecySwift 作为 Embedded Framework 添加到项目中。&lt;/p&gt;
