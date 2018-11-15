@@ -2,14 +2,75 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2018-11-04T15:38:59.811944+00:00</updated>
+  <updated>2018-11-15T06:12:03.976910+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>itermvimapp.html</id>
+    <title>使用 vim 在 Finder 中打开文件</title>
+    <updated>2018-11-15T06:12:03.977081+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;由于 macOS Mojave 下 MacVim 出现的问题 (&lt;a href="https://github.com/macvim-dev/macvim/issues/751" title=""&gt;Core Text rendering issues with macOS 10.14 Mojave · Issue #751 · macvim-dev/macvim · GitHub&lt;/a&gt;)至今没有修复好。我不得不考虑直接用 vim 来作为日常的编辑器了。&lt;/p&gt;
+
+&lt;p&gt;但是有两个小问题&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;不能复制到系统剪贴板；&lt;/li&gt;
+&lt;li&gt;不能对 Finder 中的文件，右键选择用 vim 打开；&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;对于第一个问题，只是因为系统自带的 vim 没有使用 &lt;code&gt;-clipboard&lt;/code&gt; 参数编译的原因。所以我只要用 homebrew 重新安装 vim 就可以解决。&lt;/p&gt;
+
+&lt;p&gt;第二个问题有点麻烦，还好我搜索到原来使用 mac 系统中强大的自动化脚本 automator 就可以实现。具体的做法是&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;在 automator 中创建一个应用；&lt;/li&gt;
+&lt;li&gt;使用以下 applescript (由于我不懂 AppleScript,以下代码只是从网络上复制来的) . 他的原理其实就是创建 iTerm 窗口。然后执行 &lt;code&gt;vim filename&lt;/code&gt; 打开文件。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;on run {input, parameters}
+
+    set filename to POSIX path of input
+
+    set cmd to "clear;vim " &amp;amp; quote &amp;amp; filename &amp;amp; quote
+
+    tell application "iTerm"
+
+        create window with default profile
+
+        set bounds of front window to {300, 30, 1000, 1000}
+
+        tell the current window
+
+            tell the current session
+
+                write text cmd
+
+            end tell
+
+        end tell
+
+    end tell
+
+end run&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;保存这个应用并放到应用目录下。然后就可以在 Finder 中，现在文件，右键选择用我们的应用程序打开了。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Automator 和 AppleScript 真是一个非常方便的自动化工具，而且已经支持使用 Javascript 来写脚本。&lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/itermvimapp.html" rel="alternate"/>
+    <published>2018-11-15T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2018-11-04T15:38:59.812103+00:00</updated>
+    <updated>2018-11-15T06:12:03.977331+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -36,7 +97,7 @@
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2018-11-04T15:38:59.812347+00:00</updated>
+    <updated>2018-11-15T06:12:03.977543+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -75,7 +136,7 @@
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2018-11-04T15:38:59.812677+00:00</updated>
+    <updated>2018-11-15T06:12:03.977868+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -112,7 +173,7 @@
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2018-11-04T15:38:59.812910+00:00</updated>
+    <updated>2018-11-15T06:12:03.978100+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -129,7 +190,7 @@
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2018-11-04T15:38:59.813056+00:00</updated>
+    <updated>2018-11-15T06:12:03.978246+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -164,7 +225,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2018-11-04T15:38:59.813295+00:00</updated>
+    <updated>2018-11-15T06:12:03.978482+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -524,7 +585,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2018-11-04T15:38:59.814688+00:00</updated>
+    <updated>2018-11-15T06:12:03.979853+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -585,7 +646,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2018-11-04T15:38:59.815127+00:00</updated>
+    <updated>2018-11-15T06:12:03.980257+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -887,7 +948,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2018-11-04T15:38:59.816411+00:00</updated>
+    <updated>2018-11-15T06:12:03.981479+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -916,7 +977,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2018-11-04T15:38:59.816661+00:00</updated>
+    <updated>2018-11-15T06:12:03.981719+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -957,7 +1018,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2018-11-04T15:38:59.817039+00:00</updated>
+    <updated>2018-11-15T06:12:03.982090+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1087,7 +1148,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2018-11-04T15:38:59.817560+00:00</updated>
+    <updated>2018-11-15T06:12:03.982607+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1193,7 +1254,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2018-11-04T15:38:59.818012+00:00</updated>
+    <updated>2018-11-15T06:12:03.983065+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1216,7 +1277,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2018-11-04T15:38:59.818183+00:00</updated>
+    <updated>2018-11-15T06:12:03.983231+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
