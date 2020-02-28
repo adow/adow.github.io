@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2018-11-15T06:12:03.976910+00:00</updated>
+  <updated>2020-02-28T09:14:12.381321+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2018-11-15T06:12:03.977081+00:00</updated>
+    <updated>2020-02-28T09:14:12.381489+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -70,7 +70,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2018-11-15T06:12:03.977331+00:00</updated>
+    <updated>2020-02-28T09:14:12.381743+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -97,7 +97,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2018-11-15T06:12:03.977543+00:00</updated>
+    <updated>2020-02-28T09:14:12.381956+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -136,7 +136,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2018-11-15T06:12:03.977868+00:00</updated>
+    <updated>2020-02-28T09:14:12.382300+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -173,7 +173,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2018-11-15T06:12:03.978100+00:00</updated>
+    <updated>2020-02-28T09:14:12.382535+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -190,7 +190,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2018-11-15T06:12:03.978246+00:00</updated>
+    <updated>2020-02-28T09:14:12.382677+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -225,7 +225,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2018-11-15T06:12:03.978482+00:00</updated>
+    <updated>2020-02-28T09:14:12.382915+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -585,7 +585,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2018-11-15T06:12:03.979853+00:00</updated>
+    <updated>2020-02-28T09:14:12.384304+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -646,7 +646,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2018-11-15T06:12:03.980257+00:00</updated>
+    <updated>2020-02-28T09:14:12.384687+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -948,7 +948,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2018-11-15T06:12:03.981479+00:00</updated>
+    <updated>2020-02-28T09:14:12.385909+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -977,7 +977,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2018-11-15T06:12:03.981719+00:00</updated>
+    <updated>2020-02-28T09:14:12.386147+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1018,7 +1018,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2018-11-15T06:12:03.982090+00:00</updated>
+    <updated>2020-02-28T09:14:12.386509+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1148,7 +1148,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2018-11-15T06:12:03.982607+00:00</updated>
+    <updated>2020-02-28T09:14:12.387002+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1254,7 +1254,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2018-11-15T06:12:03.983065+00:00</updated>
+    <updated>2020-02-28T09:14:12.387426+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1277,7 +1277,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2018-11-15T06:12:03.983231+00:00</updated>
+    <updated>2020-02-28T09:14:12.387579+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>

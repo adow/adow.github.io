@@ -386,6 +386,18 @@ code {
   text-align: left;
 }
 }
+
+
+.beian {
+  text-align:center;
+}
+
+.beian .links a{
+  color: rgba(155,155,155,0.37) !important;
+  margin-left: 18px;
+  font-size:13px;
+}
+
 #archive {
   margin: 35px auto;
   max-width: 800px;
@@ -446,4 +458,13 @@ code {
   color: #9b9b9b;
   font-size: 14px;
   font-weight: 400;
+}
+#archive .beian {
+  text-align:center;
+}
+
+#archive .beian .links a{
+  color: rgba(155,155,155,0.37) !important;
+  margin-left: 18px;
+  font-size:13px;
 }

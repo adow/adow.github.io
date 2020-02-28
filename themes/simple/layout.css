@@ -435,3 +435,13 @@ code {
   font-size: 14px;
   font-weight: 400;
 }
+
+.beian {
+  text-align:center;
+}
+
+.beian .links a{
+  color: rgba(155,155,155,0.37) !important;
+  margin-left: 18px;
+  font-size:13px;
+}
