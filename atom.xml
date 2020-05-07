@@ -2,14 +2,47 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2020-02-28T09:14:12.381321+00:00</updated>
+  <updated>2020-05-07T15:47:40.170225+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>jamstack.html</id>
+    <title>Jamstack?</title>
+    <updated>2020-05-07T15:47:40.170391+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;好像是一个月前看到的这个词语。 Jamstack。&lt;/p&gt;
+
+&lt;p&gt;我没有找到翻译。但是居然有一个网站（ &lt;a href="https://jamstack.org/"&gt;https://jamstack.org/&lt;/a&gt; ）专门介绍什么叫做 Jamstack。&lt;/p&gt;
+
+&lt;p&gt;简单点说就是不使用服务器来部署站点，所以静态站点最合适了。&lt;code&gt;npm run build&lt;/code&gt; 一下，然后把静态文件部署好。如果需要访问接口怎么办? 既然不能用服务器，那我们只能用 Serveless 服务，比如 Amazon Lambda，Google App Engine，其实和用 &lt;code&gt;PHP/Python/Node.js&lt;/code&gt;  去写一个后端接口差不多。简单点说就是在他的框架内实现后端接口。 &lt;/p&gt;
+
+&lt;p&gt;我感觉大约十年前的 GAE, SAE 就可以实现这样的站点，后来提供各种静态网站生成器服务（比如 Github.com 的 gh-pages) 的也是 Jamstack 了。&lt;/p&gt;
+
+&lt;p&gt;正好我最近想关掉 GCE 上的一台服务器，但是有两个小应用又得有地方放才是。 我就选择了 Zeit（在我用的时候突然声称自己融资成功并改名成了 Vercel），主要的原因是很久以前我就觉得他的界面好看，而其他的服务商我还没用过。&lt;/p&gt;
+
+&lt;p&gt;我的应用原来是用 umi.js 和 ant design mobile 写的，而他本身就直接支持 umi.js 的部署，所以静态页面的迁移非常顺利，几乎没有改动什么。我原来的应用是分开前端和后端的（Node.js，Express）, 所以我这回得改用 Zeit 的 Serveless Functions 。还好我只有几个接口，而且他的 Node.js 的环境和 Express 框架几乎一摸一样，所以也不算麻烦。 最大的好处在于我原来必须分离前端和后端的代码，而现在只有在一个根目录下建立一个 api 的目录，在其中放置 Serveless Functions 代码就可以了。 唯一觉得麻烦的是 Zeit(Vercel) 没有提供存储服务，而我原来是用 MySQL/MariaDB 存储数据的。所以我又必须开通了一个 Leancloud 的国际版的存储服务来管理数据。在本地环境运行开发模式时遇到了一些坑（主要是我自己对 umi.js 不够熟悉）。发布应用是非常方便的，推送代码到 github 就自动完成部署了（但是我没找到怎么修改成不使用 master 分支来部署）。而且部署完成后居然就直接支持 https 了。&lt;/p&gt;
+
+&lt;p&gt;下面谈谈使用 Vercel 的感受。 &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;免费版就很良心了，简单的应用够用。&lt;/li&gt;
+&lt;li&gt;开发很方便。&lt;/li&gt;
+&lt;li&gt;没有存储是个问题。&lt;/li&gt;
+&lt;li&gt;静态文件和 Serveless Functions 通过 Vercel 的 CDN 分发，但是国内没有节点，所以也不能指望速度有多快；&lt;/li&gt;
+&lt;li&gt;拜托千万别被墙啊。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    <link href="http://codingnext.com/jamstack.html" rel="alternate"/>
+    <published>2020-05-07T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2020-02-28T09:14:12.381489+00:00</updated>
+    <updated>2020-05-07T15:47:40.170625+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -70,7 +103,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2020-02-28T09:14:12.381743+00:00</updated>
+    <updated>2020-05-07T15:47:40.170829+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -97,7 +130,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2020-02-28T09:14:12.381956+00:00</updated>
+    <updated>2020-05-07T15:47:40.171024+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -136,7 +169,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2020-02-28T09:14:12.382300+00:00</updated>
+    <updated>2020-05-07T15:47:40.171330+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -173,7 +206,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2020-02-28T09:14:12.382535+00:00</updated>
+    <updated>2020-05-07T15:47:40.171548+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -190,7 +223,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2020-02-28T09:14:12.382677+00:00</updated>
+    <updated>2020-05-07T15:47:40.171684+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -225,7 +258,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2020-02-28T09:14:12.382915+00:00</updated>
+    <updated>2020-05-07T15:47:40.171909+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -585,7 +618,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2020-02-28T09:14:12.384304+00:00</updated>
+    <updated>2020-05-07T15:47:40.173151+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -646,7 +679,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2020-02-28T09:14:12.384687+00:00</updated>
+    <updated>2020-05-07T15:47:40.173515+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -948,7 +981,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2020-02-28T09:14:12.385909+00:00</updated>
+    <updated>2020-05-07T15:47:40.174723+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -977,7 +1010,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2020-02-28T09:14:12.386147+00:00</updated>
+    <updated>2020-05-07T15:47:40.174951+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1018,7 +1051,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2020-02-28T09:14:12.386509+00:00</updated>
+    <updated>2020-05-07T15:47:40.175309+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1148,7 +1181,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2020-02-28T09:14:12.387002+00:00</updated>
+    <updated>2020-05-07T15:47:40.175798+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1254,7 +1287,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2020-02-28T09:14:12.387426+00:00</updated>
+    <updated>2020-05-07T15:47:40.176227+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1277,7 +1310,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2020-02-28T09:14:12.387579+00:00</updated>
+    <updated>2020-05-07T15:47:40.176384+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
