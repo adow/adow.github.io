@@ -2,14 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2020-05-07T15:47:40.170225+00:00</updated>
+  <updated>2020-05-12T15:08:16.485529+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>sleepless.html</id>
+    <title>失眠</title>
+    <updated>2020-05-12T15:08:16.485727+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;最近的睡觉状况开始糟糕起来了。&lt;/p&gt;
+
+&lt;p&gt;开始总是睡不着，快早上时又几乎是在半睡半醒之间。明明累的爬不起来， 可就是不能完全的睡下去。 有时想今天要早点睡觉吧，可是躺着床上怎么也睡不着。实际睡着时比平时都要晚，所以又有点懊悔，还不如打会游戏或者看个剧再睡吧。&lt;/p&gt;
+
+&lt;p&gt;反倒是中午时间我睡的最熟。 我一直有睡午觉的习惯，要是不睡的话整个下午都会昏沉沉的。 我把椅子靠背往后面调好，盖上一条毯子（是公司里的那种可以拆开来的抱枕）。 虽然一般也就是15-30分钟，我可以睡的很舒服，所以有时真的会担心会不会打呼吓着其他人。&lt;/p&gt;
+
+&lt;p&gt;不知道为什么饭后我总是容易困，而且困意来的非常快。一般10分钟之内我就感觉很困了。晚饭后也是，有时我不得不睡几分钟，不然晚上的感觉真的不爽。 但是不管怎样，10点一过，我就立刻精神了。 &lt;/p&gt;
+
+&lt;p&gt;其实我也不是什么习惯熬夜的人啊，平时我总是控制在11点半左右上床。真想一上床就能睡着啊。&lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/sleepless.html" rel="alternate"/>
+    <published>2020-05-12T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>jamstack.html</id>
     <title>Jamstack?</title>
-    <updated>2020-05-07T15:47:40.170391+00:00</updated>
+    <updated>2020-05-12T15:08:16.485918+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -42,7 +63,7 @@
   <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2020-05-07T15:47:40.170625+00:00</updated>
+    <updated>2020-05-12T15:08:16.486143+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -103,7 +124,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2020-05-07T15:47:40.170829+00:00</updated>
+    <updated>2020-05-12T15:08:16.486376+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -130,7 +151,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2020-05-07T15:47:40.171024+00:00</updated>
+    <updated>2020-05-12T15:08:16.486585+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -169,7 +190,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2020-05-07T15:47:40.171330+00:00</updated>
+    <updated>2020-05-12T15:08:16.486912+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -206,7 +227,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2020-05-07T15:47:40.171548+00:00</updated>
+    <updated>2020-05-12T15:08:16.487163+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -223,7 +244,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2020-05-07T15:47:40.171684+00:00</updated>
+    <updated>2020-05-12T15:08:16.487306+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -258,7 +279,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2020-05-07T15:47:40.171909+00:00</updated>
+    <updated>2020-05-12T15:08:16.487542+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -618,7 +639,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2020-05-07T15:47:40.173151+00:00</updated>
+    <updated>2020-05-12T15:08:16.488852+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -679,7 +700,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2020-05-07T15:47:40.173515+00:00</updated>
+    <updated>2020-05-12T15:08:16.489241+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -981,7 +1002,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2020-05-07T15:47:40.174723+00:00</updated>
+    <updated>2020-05-12T15:08:16.490470+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1010,7 +1031,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2020-05-07T15:47:40.174951+00:00</updated>
+    <updated>2020-05-12T15:08:16.490707+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1051,7 +1072,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2020-05-07T15:47:40.175309+00:00</updated>
+    <updated>2020-05-12T15:08:16.491083+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1181,7 +1202,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2020-05-07T15:47:40.175798+00:00</updated>
+    <updated>2020-05-12T15:08:16.491596+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1287,7 +1308,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2020-05-07T15:47:40.176227+00:00</updated>
+    <updated>2020-05-12T15:08:16.492050+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1310,7 +1331,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2020-05-07T15:47:40.176384+00:00</updated>
+    <updated>2020-05-12T15:08:16.492215+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
