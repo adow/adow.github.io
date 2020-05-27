@@ -2,14 +2,33 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2020-05-12T15:08:16.485529+00:00</updated>
+  <updated>2020-05-27T08:12:10.354603+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>wkwebview.html</id>
+    <title>使用 WKWebView 替换 UIWebView</title>
+    <updated>2020-05-27T08:12:10.354837+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;最近把一个 iOS 项目中的 UIWebView 替换为 WKWebView。这对于我们这种使用了很多 H5 页面的 App 来说的确是一个大更新。 开始前我以为最麻烦的在于有些 UIWebView 中提供了 Javascript 桥接调用原生代码的功能要重新适配。后来发现，因为这部分功能是通过 WebViewJavascriptBridege 实现的，所以反而没有占用很多时间。&lt;/p&gt;
+
+&lt;p&gt;我遇到的最大的一个坑是原来的 UIWebView 中的图片是通过原生代码下载后通过一个桥接函数 &lt;code&gt;setImage&lt;/code&gt; 重新设置到 img 的 src 属性的（为了统一控制缓存）。但是 WKWebView 中的 img 标签无法将一个本地图片地址设置到 src。最后的解决办法居然是在 App 内启动了一个 Web 服务器。&lt;/p&gt;
+
+&lt;p&gt;在项目代码中被改动最大的是原来 UIWebViewDelegate 要全部改成 WKNavigationDelegate。好在原来的方法都能找到对应的版本，理清楚对应关系后就简单了很多。&lt;/p&gt;
+
+&lt;p&gt;当我觉得代码都已经替换好了之后，我打包上传到 App Store Connect。 但是我还是立刻收到了邮件提醒我还在使用 UIWebView。后来我才想起来原来很多第三方库中可能没有更新的。 由于我们这个项目没有使用任何包管理工具，所有的第三方库都是直接把静态库文件或者 &lt;code&gt;framework&lt;/code&gt;  拖进项目中的。我只能对每个几十个库的二进制文件进行检查。涉及到使用 UIWebView 的，就重新去下载新版本的库文件。还有很多第三方库虽然已经不再使用了，但是代码中还是留着调用。 我不得不把他们一个个去掉。 这一块实在是太花时间了。&lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/wkwebview.html" rel="alternate"/>
+    <published>2020-05-27T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>sleepless.html</id>
     <title>失眠</title>
-    <updated>2020-05-12T15:08:16.485727+00:00</updated>
+    <updated>2020-05-27T08:12:10.355179+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -30,7 +49,7 @@
   <entry>
     <id>jamstack.html</id>
     <title>Jamstack?</title>
-    <updated>2020-05-12T15:08:16.485918+00:00</updated>
+    <updated>2020-05-27T08:12:10.355369+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -63,7 +82,7 @@
   <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2020-05-12T15:08:16.486143+00:00</updated>
+    <updated>2020-05-27T08:12:10.355627+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -124,7 +143,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2020-05-12T15:08:16.486376+00:00</updated>
+    <updated>2020-05-27T08:12:10.355902+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -151,7 +170,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2020-05-12T15:08:16.486585+00:00</updated>
+    <updated>2020-05-27T08:12:10.356154+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -190,7 +209,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2020-05-12T15:08:16.486912+00:00</updated>
+    <updated>2020-05-27T08:12:10.356566+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -227,7 +246,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2020-05-12T15:08:16.487163+00:00</updated>
+    <updated>2020-05-27T08:12:10.356934+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -244,7 +263,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2020-05-12T15:08:16.487306+00:00</updated>
+    <updated>2020-05-27T08:12:10.357127+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -279,7 +298,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2020-05-12T15:08:16.487542+00:00</updated>
+    <updated>2020-05-27T08:12:10.357422+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -639,7 +658,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2020-05-12T15:08:16.488852+00:00</updated>
+    <updated>2020-05-27T08:12:10.358996+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -700,7 +719,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2020-05-12T15:08:16.489241+00:00</updated>
+    <updated>2020-05-27T08:12:10.359444+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1002,7 +1021,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2020-05-12T15:08:16.490470+00:00</updated>
+    <updated>2020-05-27T08:12:10.360910+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1031,7 +1050,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2020-05-12T15:08:16.490707+00:00</updated>
+    <updated>2020-05-27T08:12:10.361199+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1072,7 +1091,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2020-05-12T15:08:16.491083+00:00</updated>
+    <updated>2020-05-27T08:12:10.361727+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1202,7 +1221,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2020-05-12T15:08:16.491596+00:00</updated>
+    <updated>2020-05-27T08:12:10.362593+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1308,7 +1327,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2020-05-12T15:08:16.492050+00:00</updated>
+    <updated>2020-05-27T08:12:10.363165+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1331,7 +1350,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2020-05-12T15:08:16.492215+00:00</updated>
+    <updated>2020-05-27T08:12:10.363379+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
