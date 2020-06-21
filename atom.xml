@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2020-06-21T16:13:13.347803+00:00</updated>
+  <updated>2020-06-21T16:14:29.263735+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
     <id>arsenal-is-broken.html</id>
     <title>阿森纳的足球只能从前几年的集锦中看了</title>
-    <updated>2020-06-21T16:13:13.348016+00:00</updated>
+    <updated>2020-06-21T16:14:29.263959+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -28,7 +28,7 @@
   <entry>
     <id>wkwebview.html</id>
     <title>使用 WKWebView 替换 UIWebView</title>
-    <updated>2020-06-21T16:13:13.348195+00:00</updated>
+    <updated>2020-06-21T16:14:29.264149+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -47,7 +47,7 @@
   <entry>
     <id>sleepless.html</id>
     <title>失眠</title>
-    <updated>2020-06-21T16:13:13.348376+00:00</updated>
+    <updated>2020-06-21T16:14:29.264334+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -68,7 +68,7 @@
   <entry>
     <id>jamstack.html</id>
     <title>Jamstack?</title>
-    <updated>2020-06-21T16:13:13.348527+00:00</updated>
+    <updated>2020-06-21T16:14:29.264485+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -101,7 +101,7 @@
   <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2020-06-21T16:13:13.348758+00:00</updated>
+    <updated>2020-06-21T16:14:29.264707+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -162,7 +162,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2020-06-21T16:13:13.348975+00:00</updated>
+    <updated>2020-06-21T16:14:29.264931+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -189,7 +189,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2020-06-21T16:13:13.349184+00:00</updated>
+    <updated>2020-06-21T16:14:29.265149+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -228,7 +228,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2020-06-21T16:13:13.349515+00:00</updated>
+    <updated>2020-06-21T16:14:29.265518+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -265,7 +265,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2020-06-21T16:13:13.349763+00:00</updated>
+    <updated>2020-06-21T16:14:29.265758+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -282,7 +282,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2020-06-21T16:13:13.349906+00:00</updated>
+    <updated>2020-06-21T16:14:29.265905+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -317,7 +317,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2020-06-21T16:13:13.350143+00:00</updated>
+    <updated>2020-06-21T16:14:29.266150+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -677,7 +677,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2020-06-21T16:13:13.351492+00:00</updated>
+    <updated>2020-06-21T16:14:29.267536+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -738,7 +738,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2020-06-21T16:13:13.351904+00:00</updated>
+    <updated>2020-06-21T16:14:29.267942+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1040,7 +1040,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2020-06-21T16:13:13.353147+00:00</updated>
+    <updated>2020-06-21T16:14:29.269266+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1069,7 +1069,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2020-06-21T16:13:13.353387+00:00</updated>
+    <updated>2020-06-21T16:14:29.269530+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1110,7 +1110,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2020-06-21T16:13:13.353766+00:00</updated>
+    <updated>2020-06-21T16:14:29.269932+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1240,7 +1240,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2020-06-21T16:13:13.354278+00:00</updated>
+    <updated>2020-06-21T16:14:29.270501+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1346,7 +1346,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2020-06-21T16:13:13.354742+00:00</updated>
+    <updated>2020-06-21T16:14:29.270980+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1369,7 +1369,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2020-06-21T16:13:13.354914+00:00</updated>
+    <updated>2020-06-21T16:14:29.271159+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
