@@ -2,14 +2,33 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2020-05-27T08:12:10.354603+00:00</updated>
+  <updated>2020-06-21T16:07:55.375318+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>arsenal.html</id>
+    <title>arsenal-is-broken</title>
+    <updated>2020-06-21T16:07:55.375529+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;阿森纳踢的太糟糕了。&lt;/p&gt;
+
+&lt;p&gt;被逆转，被绝杀。 关键是球员们踢的无比挣扎,没有人知道该怎么办。&lt;/p&gt;
+
+&lt;p&gt;从守门员开始持球推进但战术是现在流行的趋势，可是我发现他们从来就没有顺顺利利的推进到对方要害位置的时候。每个球员接球都很紧张，即使从转播的角度看，你都很难找到合理出球的线路。这些球员的技术也许根本做不到，也有可能是训练中对于这种套路练习的不够。&lt;/p&gt;
+
+&lt;p&gt;现在的阿森纳早已没有华丽的配合了，因为从个体到整体没有人可以去做到的。他们踢着难看的比赛，不得不依靠意外去获得胜利。球队失去了竞争力，也就失去了吸引力,所以平庸的球员越来越多。&lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/arsenal.html" rel="alternate"/>
+    <published>2020-06-22T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>wkwebview.html</id>
     <title>使用 WKWebView 替换 UIWebView</title>
-    <updated>2020-05-27T08:12:10.354837+00:00</updated>
+    <updated>2020-06-21T16:07:55.375707+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -28,7 +47,7 @@
   <entry>
     <id>sleepless.html</id>
     <title>失眠</title>
-    <updated>2020-05-27T08:12:10.355179+00:00</updated>
+    <updated>2020-06-21T16:07:55.375888+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -49,7 +68,7 @@
   <entry>
     <id>jamstack.html</id>
     <title>Jamstack?</title>
-    <updated>2020-05-27T08:12:10.355369+00:00</updated>
+    <updated>2020-06-21T16:07:55.376038+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -82,7 +101,7 @@
   <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2020-05-27T08:12:10.355627+00:00</updated>
+    <updated>2020-06-21T16:07:55.376253+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -143,7 +162,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2020-05-27T08:12:10.355902+00:00</updated>
+    <updated>2020-06-21T16:07:55.376474+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -170,7 +189,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2020-05-27T08:12:10.356154+00:00</updated>
+    <updated>2020-06-21T16:07:55.376698+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -209,7 +228,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2020-05-27T08:12:10.356566+00:00</updated>
+    <updated>2020-06-21T16:07:55.377101+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -246,7 +265,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2020-05-27T08:12:10.356934+00:00</updated>
+    <updated>2020-06-21T16:07:55.377343+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -263,7 +282,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2020-05-27T08:12:10.357127+00:00</updated>
+    <updated>2020-06-21T16:07:55.377506+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -298,7 +317,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2020-05-27T08:12:10.357422+00:00</updated>
+    <updated>2020-06-21T16:07:55.377742+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -658,7 +677,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2020-05-27T08:12:10.358996+00:00</updated>
+    <updated>2020-06-21T16:07:55.379067+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -719,7 +738,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2020-05-27T08:12:10.359444+00:00</updated>
+    <updated>2020-06-21T16:07:55.379451+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1021,7 +1040,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2020-05-27T08:12:10.360910+00:00</updated>
+    <updated>2020-06-21T16:07:55.380689+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1050,7 +1069,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2020-05-27T08:12:10.361199+00:00</updated>
+    <updated>2020-06-21T16:07:55.380939+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1091,7 +1110,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2020-05-27T08:12:10.361727+00:00</updated>
+    <updated>2020-06-21T16:07:55.381324+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1221,7 +1240,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2020-05-27T08:12:10.362593+00:00</updated>
+    <updated>2020-06-21T16:07:55.381962+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1327,7 +1346,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2020-05-27T08:12:10.363165+00:00</updated>
+    <updated>2020-06-21T16:07:55.382552+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1350,7 +1369,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2020-05-27T08:12:10.363379+00:00</updated>
+    <updated>2020-06-21T16:07:55.382740+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
