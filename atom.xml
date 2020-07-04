@@ -2,14 +2,37 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2020-06-21T16:14:29.263735+00:00</updated>
+  <updated>2020-07-04T09:20:11.782517+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>no-replicasets-in-k8s-deployment</id>
+    <title>Kubernetes 突然无法创建新的副本集合</title>
+    <updated>2020-07-04T09:20:11.782716+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;下半年开始的第一天发现通过 gitlab ci 往k8s 集群部署应用时错误了，原因是证书过期了。这是一个小型的集群，我直接建在了我们的虚拟化集群里面。建立这个集群的初衷只是当时学习完docker后顺便看了一下这方面的文章，照着官方文档就居然直接给安装上了。所以后期也没有认真去研究如何运维它。上面跑着的都是一些我自己写的和数据分析相关的应用。虽然证书过期了，运行中的容器到不受影响。&lt;/p&gt;
+
+&lt;p&gt;我更新了一下证书后部署应用成功了，以为这下就算解决了。但是过了会发现运行着的还是老版本的代码。部署（Deployment）中只有老的副本集合，新的副本集合一直是空的。所以导致一直没有建立新的容器组。而且在 events 中看不到任何输出信息。我搜索了一番也没有找到解决方法，然后干脆就把老的副本集合删了。这下新的副本集合还是空的，而原来运行着的老副本集合一个都没了。不管我怎么重新部署（包括换了名字后部署新的）都是同样的结果，副本集合是空的。我在 Deployments 文档上看到了特别的说明:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;说明： 不要管理 Deployment 拥有的 ReplicaSets 。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;所以，这会是我现在一个副本集合也没有的原因吗？&lt;/p&gt;
+
+&lt;p&gt;这时我们的运维告诉我他学习docker/k8s 几个月后终于给我部署了一套新的集群。但是现在只有一个 master 节点和一个worker 节点。所以看来我又得来重新搞一遍了？&lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/no-replicasets-in-k8s-deployment" rel="alternate"/>
+    <published>2020-07-04T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>arsenal-is-broken.html</id>
     <title>阿森纳的足球只能从前几年的集锦中看了</title>
-    <updated>2020-06-21T16:14:29.263959+00:00</updated>
+    <updated>2020-07-04T09:20:11.782906+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -28,7 +51,7 @@
   <entry>
     <id>wkwebview.html</id>
     <title>使用 WKWebView 替换 UIWebView</title>
-    <updated>2020-06-21T16:14:29.264149+00:00</updated>
+    <updated>2020-07-04T09:20:11.783035+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -47,7 +70,7 @@
   <entry>
     <id>sleepless.html</id>
     <title>失眠</title>
-    <updated>2020-06-21T16:14:29.264334+00:00</updated>
+    <updated>2020-07-04T09:20:11.783193+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -68,7 +91,7 @@
   <entry>
     <id>jamstack.html</id>
     <title>Jamstack?</title>
-    <updated>2020-06-21T16:14:29.264485+00:00</updated>
+    <updated>2020-07-04T09:20:11.783326+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -101,7 +124,7 @@
   <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2020-06-21T16:14:29.264707+00:00</updated>
+    <updated>2020-07-04T09:20:11.783518+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -162,7 +185,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2020-06-21T16:14:29.264931+00:00</updated>
+    <updated>2020-07-04T09:20:11.783717+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -189,7 +212,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2020-06-21T16:14:29.265149+00:00</updated>
+    <updated>2020-07-04T09:20:11.783916+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -228,7 +251,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2020-06-21T16:14:29.265518+00:00</updated>
+    <updated>2020-07-04T09:20:11.784240+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -265,7 +288,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2020-06-21T16:14:29.265758+00:00</updated>
+    <updated>2020-07-04T09:20:11.784458+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -282,7 +305,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2020-06-21T16:14:29.265905+00:00</updated>
+    <updated>2020-07-04T09:20:11.784592+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -317,7 +340,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2020-06-21T16:14:29.266150+00:00</updated>
+    <updated>2020-07-04T09:20:11.784819+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -677,7 +700,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2020-06-21T16:14:29.267536+00:00</updated>
+    <updated>2020-07-04T09:20:11.786081+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -738,7 +761,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2020-06-21T16:14:29.267942+00:00</updated>
+    <updated>2020-07-04T09:20:11.786444+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1040,7 +1063,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2020-06-21T16:14:29.269266+00:00</updated>
+    <updated>2020-07-04T09:20:11.787647+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1069,7 +1092,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2020-06-21T16:14:29.269530+00:00</updated>
+    <updated>2020-07-04T09:20:11.788075+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1110,7 +1133,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2020-06-21T16:14:29.269932+00:00</updated>
+    <updated>2020-07-04T09:20:11.788454+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1240,7 +1263,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2020-06-21T16:14:29.270501+00:00</updated>
+    <updated>2020-07-04T09:20:11.788968+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1346,7 +1369,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2020-06-21T16:14:29.270980+00:00</updated>
+    <updated>2020-07-04T09:20:11.789396+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1369,7 +1392,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2020-06-21T16:14:29.271159+00:00</updated>
+    <updated>2020-07-04T09:20:11.789555+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
