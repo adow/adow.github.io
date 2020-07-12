@@ -2,14 +2,97 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2020-07-04T09:24:07.451090+00:00</updated>
+  <updated>2020-07-12T08:41:47.155130+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>raw-in-ios.html</id>
+    <title>iOS 中 RAW 照片的拍摄和显示</title>
+    <updated>2020-07-12T08:41:47.155353+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;当我们按下快门之后，相机才创建图形前会进行一系列的操作。包括调整白平衡，降噪，调色，锐化，然后压缩成一张高质量的图形后用于存储和显示。&lt;/p&gt;
+
+&lt;p&gt;但是如果我们推迟这种操作，只存储传感器获取的原始数据，在后期就可以获得更多的处理空间。&lt;/p&gt;
+&lt;h2&gt;拍摄 RAW 照片的过程&lt;/h2&gt;
+&lt;p&gt;在 iOS 中拍摄 RAW 时必须先选择以  RAW 文件保存，并且会占用更多的存储空间。 但是由于 RAW 内容无法直接显示，所以在拍摄时会同时保存一张 &lt;code&gt;JPEG/HEIF/HEVC&lt;/code&gt; 的图片，然后将 RAW 数据保存在其中。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/capturing_still_and_live_photos/capturing_photos_in_raw_format" title=""&gt;Capturing Photos in RAW Format&lt;/a&gt; 详细的说明了如何将拍摄的照片保存为 RAW 格式。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;首先要为  &lt;code&gt;AVCapturePhotoOutput&lt;/code&gt; 照片输出过程中增加以 RAW 格式和普通照片格式的选项；&lt;/li&gt;
+&lt;li&gt;由于会输出两张照片，所以  &lt;code&gt;AVCapturePhotoOutput&lt;/code&gt; 的 &lt;code&gt;photoOutput(_:didFinishProcessingPhoto:error:)&lt;/code&gt;  会被调用两次 （RAW 和 HEVC 各一次）。 每次都可以通过 &lt;code&gt;photo.fileDataRepresentation()&lt;/code&gt; 获取到照片的数据 (Data类型)。&lt;/li&gt;
+&lt;li&gt;最后我们需要将两次的数据存入一个 &lt;code&gt;PHAsset&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;官方文档上，是将 RAW 的格式内容先保存到一个临时文件上，然后等待全部照片都获取完成后，使用 &lt;code&gt;PHAssetCreationRequest&lt;/code&gt; 创建一个 PHAsset。他包含两个 Resource， 一个是压缩后的照片数据（&lt;code&gt;JPEG/HEIF/HEVC&lt;/code&gt; 之类的格式），另一个是 RAW 数据。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="bp"&gt;PHPhotoLibrary&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shared&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;performChanges&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+                &lt;span class="c1"&gt;// Add the compressed (HEIF) data as the main resource for the Photos asset.&lt;/span&gt;
+                &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;creationRequest&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PHAssetCreationRequest&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;forAsset&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+                &lt;span class="n"&gt;creationRequest&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addResource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;photo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;compressedData&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+                &lt;span class="c1"&gt;// Add the RAW (DNG) file as an altenate resource.&lt;/span&gt;
+                &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PHAssetResourceCreationOptions&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+                &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shouldMoveFile&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+                &lt;span class="n"&gt;creationRequest&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addResource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;alternatePhoto&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fileURL&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;rawURL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;completionHandler&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;handlePhotoLibraryError&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;完整的代码请参考前面的官方文档。&lt;/p&gt;
+&lt;h2&gt;显示 RAW 照片&lt;/h2&gt;
+&lt;p&gt;在 iOS 显示 RAW 比存储他更加麻烦，因为 iOS 的系统相册根本没法显示出来。 &lt;/p&gt;
+
+&lt;p&gt;在拍摄的时候， RAW 数据是以 &lt;code&gt;alternatePhoto&lt;/code&gt; 保存在 PHAsset 中的，所以系统相册显示的其实是那张压缩后的照片（JPEG/HEIF/HEVC）。 从系统相册中我们甚至都不知道这是一张以 RAW 格式拍摄的照片。&lt;/p&gt;
+
+&lt;p&gt;我们可以将他理解为未完成显影的胶片。将 RAW 显示出来的过程就好像是显影的过程。所以，如何显示 RAW 取决于解析数据的程序。&lt;/p&gt;
+&lt;h3&gt;在 macOS 上显示 RAW 照片&lt;/h3&gt;
+&lt;p&gt;要显示和获取到 RAW 文件的最方便的方法是在 macOS 上的相册 App 中打开这张相片。 他会在右上角显示  &lt;code&gt;J&lt;/code&gt; 或者 &lt;code&gt;R&lt;/code&gt; 。 前者表示现在显示的是 JPEG格式，后者表示现在正在显示的是 &lt;code&gt;RAW&lt;/code&gt; 格式。 在 macOS 的系统相册中可以对着这张照片点击右键选择&lt;code&gt;将 JPEG 作为原片&lt;/code&gt; 或者 &lt;code&gt;将 RAW 作为原片&lt;/code&gt;。 并且可以将此照片作为 &lt;code&gt;dng&lt;/code&gt; 格式导出。 然后就可以用后期软件打开进行编辑了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://images.codingnext.com/raw-3.png" alt="http://images.codingnext.com/raw-3.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://images.codingnext.com/raw-1.png" alt="http://images.codingnext.com/raw-1.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://images.codingnext.com/raw-2.png" alt="http://images.codingnext.com/raw-2.png"&gt;&lt;/p&gt;
+&lt;h3&gt;在 iOS 上显示 RAW 照片&lt;/h3&gt;
+&lt;p&gt;虽然系统相册无法显示 RAW 格式，但是很多第三方的 App 是可以正确的现实和编辑 RAW 照片的，比如知名相机 App: Halide。 我自己开发的手动相机 App (Clara) 也可以正确的拍摄和显示  RAW 格式照片。&lt;/p&gt;
+
+&lt;p&gt;在 iOS 中，正确的现实 RAW 数据只有一个方法，即使使用 &lt;code&gt;CIFilter&lt;/code&gt;。 &lt;/p&gt;
+
+&lt;p&gt;显示相册中的流程大致是这样的：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;获取 PHAsset, 每个 PHAsset 表示一张照片；&lt;/li&gt;
+&lt;li&gt; 使用 PHCachingImageManager 获取这个 PHAsset 的内容，他的数据包含在 Data 类型中，同时还可以获取到对应的 UTI （用于表示这个数据的格式），如果这个照片是 RAW 格式，他会是 &lt;code&gt;com.adobe.raw-image&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;用 CIFilter 来解析 RAW 数据，输出用于显示的图片;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;所以代码上大体是这样的&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kc"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imageManager&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;requestImageDataAndOrientation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;asset&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;rawImageRequestOptions&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;resultHandler&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kr"&gt;weak&lt;/span&gt; &lt;span class="kc"&gt;self&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;imageData&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;uti&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;orientation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
+                    &lt;span class="n"&gt;guard&lt;/span&gt; &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;_self&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;self&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                        &lt;span class="k"&gt;return&lt;/span&gt;
+                    &lt;span class="p"&gt;}&lt;/span&gt;
+                    &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;CIRAWFilterOption&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rawValue&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;kCGImageSourceTypeIdentifierHint&lt;/span&gt; &lt;span class="kc"&gt;as&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;uti&lt;/span&gt;&lt;span class="p"&gt;!]&lt;/span&gt;
+                    &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;filter&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;CIFilter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;imageData&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;imageData&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+                    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;rawCiImage&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;?.&lt;/span&gt;&lt;span class="n"&gt;outputImage&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                            &lt;span class="c1"&gt;// 获取到用于输出的图片              &lt;/span&gt;
+                       &lt;span class="p"&gt;}&lt;/span&gt;
+                    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+                    &lt;span class="p"&gt;}&lt;/span&gt;
+                &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content>
+    <link href="http://codingnext.com/raw-in-ios.html" rel="alternate"/>
+    <published>2020-07-12T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>no-replicasets-in-k8s-deployment.html</id>
     <title>Kubernetes 突然无法创建新的副本集合</title>
-    <updated>2020-07-04T09:24:07.451302+00:00</updated>
+    <updated>2020-07-12T08:41:47.158856+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -32,7 +115,7 @@
   <entry>
     <id>arsenal-is-broken.html</id>
     <title>阿森纳的足球只能从前几年的集锦中看了</title>
-    <updated>2020-07-04T09:24:07.451502+00:00</updated>
+    <updated>2020-07-12T08:41:47.159083+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -51,7 +134,7 @@
   <entry>
     <id>wkwebview.html</id>
     <title>使用 WKWebView 替换 UIWebView</title>
-    <updated>2020-07-04T09:24:07.451640+00:00</updated>
+    <updated>2020-07-12T08:41:47.159227+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -70,7 +153,7 @@
   <entry>
     <id>sleepless.html</id>
     <title>失眠</title>
-    <updated>2020-07-04T09:24:07.451811+00:00</updated>
+    <updated>2020-07-12T08:41:47.159396+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -91,7 +174,7 @@
   <entry>
     <id>jamstack.html</id>
     <title>Jamstack?</title>
-    <updated>2020-07-04T09:24:07.451955+00:00</updated>
+    <updated>2020-07-12T08:41:47.159536+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -124,7 +207,7 @@
   <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2020-07-04T09:24:07.452169+00:00</updated>
+    <updated>2020-07-12T08:41:47.159740+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -185,7 +268,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2020-07-04T09:24:07.452382+00:00</updated>
+    <updated>2020-07-12T08:41:47.159951+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -212,7 +295,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2020-07-04T09:24:07.452604+00:00</updated>
+    <updated>2020-07-12T08:41:47.160155+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -251,7 +334,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2020-07-04T09:24:07.452942+00:00</updated>
+    <updated>2020-07-12T08:41:47.160477+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -288,7 +371,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2020-07-04T09:24:07.453241+00:00</updated>
+    <updated>2020-07-12T08:41:47.160706+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -305,7 +388,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2020-07-04T09:24:07.453405+00:00</updated>
+    <updated>2020-07-12T08:41:47.160851+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -340,7 +423,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2020-07-04T09:24:07.453655+00:00</updated>
+    <updated>2020-07-12T08:41:47.161091+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -700,7 +783,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2020-07-04T09:24:07.455016+00:00</updated>
+    <updated>2020-07-12T08:41:47.162516+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -761,7 +844,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2020-07-04T09:24:07.455408+00:00</updated>
+    <updated>2020-07-12T08:41:47.163060+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1063,7 +1146,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2020-07-04T09:24:07.456795+00:00</updated>
+    <updated>2020-07-12T08:41:47.164381+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1092,7 +1175,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2020-07-04T09:24:07.457088+00:00</updated>
+    <updated>2020-07-12T08:41:47.164629+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1133,7 +1216,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2020-07-04T09:24:07.457512+00:00</updated>
+    <updated>2020-07-12T08:41:47.165013+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1263,7 +1346,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2020-07-04T09:24:07.458047+00:00</updated>
+    <updated>2020-07-12T08:41:47.165534+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1369,7 +1452,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2020-07-04T09:24:07.458516+00:00</updated>
+    <updated>2020-07-12T08:41:47.165984+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1392,7 +1475,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2020-07-04T09:24:07.458686+00:00</updated>
+    <updated>2020-07-12T08:41:47.166153+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
