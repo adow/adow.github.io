@@ -2,14 +2,52 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-cn">
   <id>http://codingnext.com/</id>
   <title>CodingNEXT</title>
-  <updated>2020-07-12T08:41:47.155130+00:00</updated>
+  <updated>2021-01-06T15:26:54.698765+00:00</updated>
   <link href="http://codingnext.com/" rel="alternate"/>
   <link href="http://codingnext.com/atom.xml" rel="self"/>
   <generator version="0.3.2">python-feedgen</generator>
   <entry>
+    <id>vim-syntax-sync.html</id>
+    <title>解决 vim 语法高亮失效</title>
+    <updated>2021-01-06T15:26:54.698988+00:00</updated>
+    <author>
+      <name>adow</name>
+      <email>reynoldqin@gmail.com</email>
+    </author>
+    <content type="html">&lt;p&gt;这是我遇到了近10年的问题，而我居然真的忍受了他10年，直到最近终于无法忍受了才去搜了一下解决方案。&lt;/p&gt;
+
+&lt;p&gt;在打开一些格式文件，比如 &lt;code&gt;.py&lt;/code&gt;, &lt;code&gt;.js&lt;/code&gt; 。 如果文件比较长，一旦滚屏后，就可能会出现语法高亮颜色不对了。有的时候往上滚一段居然再回来就又好了。 从10年前我开始用 vim 写 python 代码时就经常看到这种情况，因为不影响正常使用，也就硬着头皮用下去了，没想到一下就看了10年。&lt;/p&gt;
+
+&lt;p&gt;其实修复他的办法很简单，就是重新同步一下语法着色：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;syntax&lt;/span&gt; &lt;span class="k"&gt;sync&lt;/span&gt; fromstart
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;也可以指定限定的行数，这样效率可以高一些,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;syntax&lt;/span&gt; &lt;span class="k"&gt;sync&lt;/span&gt; minlines&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;如果手工执行这个比较麻烦，那可以在 &lt;code&gt;.vimrc&lt;/code&gt; 中配置，每次输入内容时都重新着色语法高亮&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;autocmd &lt;span class="nb"&gt;BufEnter&lt;/span&gt; * :&lt;span class="nb"&gt;syntax&lt;/span&gt; &lt;span class="k"&gt;sync&lt;/span&gt; fromstart
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;或者做一个快捷键来手动调用&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;noremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;F12&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;Esc&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;:&lt;span class="nb"&gt;syntax&lt;/span&gt; &lt;span class="k"&gt;sync&lt;/span&gt; fromstart&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;CR&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;inoremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;F12&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;C&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="k"&gt;o&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;:&lt;span class="nb"&gt;syntax&lt;/span&gt; &lt;span class="k"&gt;sync&lt;/span&gt; fromstart&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;CR&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;参考：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://vim.fandom.com/wiki/Fix_syntax_highlighting" title=""&gt;Fix syntax highlighting&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/27235102/vim-randomly-breaks-syntax-highlighting" title=""&gt;vim randomly breaks syntax highlighting&lt;/a&gt; &lt;/p&gt;
+</content>
+    <link href="http://codingnext.com/vim-syntax-sync.html" rel="alternate"/>
+    <published>2021-01-06T00:00:00+08:00</published>
+  </entry>
+  <entry>
     <id>raw-in-ios.html</id>
     <title>iOS 中 RAW 照片的拍摄和显示</title>
-    <updated>2020-07-12T08:41:47.155353+00:00</updated>
+    <updated>2021-01-06T15:26:54.700973+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -92,7 +130,7 @@
   <entry>
     <id>no-replicasets-in-k8s-deployment.html</id>
     <title>Kubernetes 突然无法创建新的副本集合</title>
-    <updated>2020-07-12T08:41:47.158856+00:00</updated>
+    <updated>2021-01-06T15:26:54.728939+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -115,7 +153,7 @@
   <entry>
     <id>arsenal-is-broken.html</id>
     <title>阿森纳的足球只能从前几年的集锦中看了</title>
-    <updated>2020-07-12T08:41:47.159083+00:00</updated>
+    <updated>2021-01-06T15:26:54.729192+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -134,7 +172,7 @@
   <entry>
     <id>wkwebview.html</id>
     <title>使用 WKWebView 替换 UIWebView</title>
-    <updated>2020-07-12T08:41:47.159227+00:00</updated>
+    <updated>2021-01-06T15:26:54.729340+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -153,7 +191,7 @@
   <entry>
     <id>sleepless.html</id>
     <title>失眠</title>
-    <updated>2020-07-12T08:41:47.159396+00:00</updated>
+    <updated>2021-01-06T15:26:54.729530+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -174,7 +212,7 @@
   <entry>
     <id>jamstack.html</id>
     <title>Jamstack?</title>
-    <updated>2020-07-12T08:41:47.159536+00:00</updated>
+    <updated>2021-01-06T15:26:54.729679+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -207,7 +245,7 @@
   <entry>
     <id>itermvimapp.html</id>
     <title>使用 vim 在 Finder 中打开文件</title>
-    <updated>2020-07-12T08:41:47.159740+00:00</updated>
+    <updated>2021-01-06T15:26:54.729894+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -268,7 +306,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>using-javascript.html</id>
     <title>最近使用 Javascript 生态环境开发的体验</title>
-    <updated>2020-07-12T08:41:47.159951+00:00</updated>
+    <updated>2021-01-06T15:26:54.730113+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -295,7 +333,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>taskjs.html</id>
     <title>通过 Airtable 将树莓派变成一个下载机</title>
-    <updated>2020-07-12T08:41:47.160155+00:00</updated>
+    <updated>2021-01-06T15:26:54.730335+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -334,7 +372,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>swift23_project.html</id>
     <title>一次 Swift2.3 项目的维护经历</title>
-    <updated>2020-07-12T08:41:47.160477+00:00</updated>
+    <updated>2021-01-06T15:26:54.730682+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -371,7 +409,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171103-ps4-in-box.html</id>
     <title>20171103 PS4 最终还是被收起来了</title>
-    <updated>2020-07-12T08:41:47.160706+00:00</updated>
+    <updated>2021-01-06T15:26:54.730921+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -388,7 +426,7 @@ end run&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>20171110-youcompleteme.html</id>
     <title>20171110 一整天都在和 YouCompleteMe 较劲</title>
-    <updated>2020-07-12T08:41:47.160851+00:00</updated>
+    <updated>2021-01-06T15:26:54.731071+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -423,7 +461,7 @@ ERROR: the build failed.&lt;/code&gt;&lt;/pre&gt;
   <entry>
     <id>you-forget-nsurlcache.html</id>
     <title>被忽视的 NSURLCache</title>
-    <updated>2020-07-12T08:41:47.161091+00:00</updated>
+    <updated>2021-01-06T15:26:54.731313+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -783,7 +821,7 @@ private func aw_setImage(image:UIImage){
   <entry>
     <id>nsurlcache.html</id>
     <title>说说 NSURLCache 中的那些坑</title>
-    <updated>2020-07-12T08:41:47.162516+00:00</updated>
+    <updated>2021-01-06T15:26:54.732726+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -844,7 +882,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   <entry>
     <id>awpromise.html</id>
     <title>探究 Promise 对象</title>
-    <updated>2020-07-12T08:41:47.163060+00:00</updated>
+    <updated>2021-01-06T15:26:54.733136+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1146,7 +1184,7 @@ def get(self):
   <entry>
     <id>hard-mode.html</id>
     <title>习惯性 Hard 模式</title>
-    <updated>2020-07-12T08:41:47.164381+00:00</updated>
+    <updated>2021-01-06T15:26:54.734348+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1175,7 +1213,7 @@ def get(self):
   <entry>
     <id>tools-2016.html</id>
     <title>2016 我的工具箱</title>
-    <updated>2020-07-12T08:41:47.164629+00:00</updated>
+    <updated>2021-01-06T15:26:54.734590+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1216,7 +1254,7 @@ def get(self):
   <entry>
     <id>uitableview.html</id>
     <title>奇怪的 UITableView</title>
-    <updated>2020-07-12T08:41:47.165013+00:00</updated>
+    <updated>2021-01-06T15:26:54.734975+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1346,7 +1384,7 @@ override func setHighlighted(highlighted: Bool,
   <entry>
     <id>awsqilitedb.html</id>
     <title>AWSQLiteDB</title>
-    <updated>2020-07-12T08:41:47.165534+00:00</updated>
+    <updated>2021-01-06T15:26:54.735490+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1452,7 +1490,7 @@ for r in rows {
   <entry>
     <id>about.html</id>
     <title>关于我</title>
-    <updated>2020-07-12T08:41:47.165984+00:00</updated>
+    <updated>2021-01-06T15:26:54.735944+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
@@ -1475,7 +1513,7 @@ for r in rows {
   <entry>
     <id>secrecy-swift.html</id>
     <title>SecrecySwift</title>
-    <updated>2020-07-12T08:41:47.166153+00:00</updated>
+    <updated>2021-01-06T15:26:54.736112+00:00</updated>
     <author>
       <name>adow</name>
       <email>reynoldqin@gmail.com</email>
